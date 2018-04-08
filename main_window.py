@@ -1,10 +1,24 @@
-from PyQt5.QtWidgets import QMainWindow, QAction, qApp
+import os.path
+from enum import Enum
+
+from PyQt5.QtWidgets import QMainWindow, QAction, qApp, QFileDialog, QMessageBox
+
+from core.decision_system import DecisionSystem
 
 
 class MainWindow(QMainWindow):
+    class MessageType(Enum):
+        Error = 1,
+        Warning = 2,
+        Info = 3
+
     def __init__(self):
         super().__init__()
+
+        self.decision_system = DecisionSystem()
+
         self.setup_ui()
+
         pass
 
     def setup_ui(self):
@@ -29,6 +43,30 @@ class MainWindow(QMainWindow):
         exit_action.setStatusTip('Exit application')
         exit_action.triggered.connect(qApp.quit)
 
+        # Import file menu item
+        import_action = QAction('&Import', self)
+        import_action.setShortcut('Ctrl+I')
+        import_action.setStatusTip('Import file')
+        import_action.triggered.connect(self.import_file)
+
+        file_menu.addAction(import_action)
         file_menu.addAction(exit_action)
+        pass
+
+    def show_message(self, content, type):
+        if type == self.MessageType.Error:
+            QMessageBox.critical(self, 'Error', content)
+        pass
+
+    def import_file(self):
+        file_name = QFileDialog.getOpenFileName(self, 'Import decision tree file')[0]
+        if not file_name:
+            return
+
+        if not os.path.isfile(file_name):
+            self.show_message('File does not exist: ' + file_name, self.MessageType.Error)
+            return
+
+        # TODO: apply new rules from file into decision system
 
         pass
