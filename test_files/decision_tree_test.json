@@ -2,7 +2,7 @@
   "precedent": [
     {
       "id": "task_formalized",
-      "text": "Задача формализуема",
+      "text": "Is the problem formalizable?",
       "next": [
         {
           "coef": 1,
@@ -20,7 +20,7 @@
     },
     {
       "id": "solved_in_time",
-      "text": "Разрешима в приемлимое время",
+      "text": "Is it permissible at the right time?",
       "next": [
         {
           "coef": 1,
@@ -34,7 +34,7 @@
     },
     {
       "id": "image_recognition_task",
-      "text": "Задача типа распознавания образов",
+      "text": "The task of pattern recognition type?",
       "next": [
         {
           "coef": 1,
@@ -52,7 +52,7 @@
     },
     {
       "id": "nn_interpret_obvious",
-      "text": "Нейросетевая интерпретация модели очевидна",
+      "text": "Is the neural network interpretation of the model obvious?",
       "next": [
         {
           "coef": 1,
@@ -66,7 +66,7 @@
     },
     {
       "id": "linear_algorithm",
-      "text": "Алгоритм преобразования линейный",
+      "text": "Is the linear transformation algorithm?",
       "next": [
         {
           "coef": 1,
@@ -80,7 +80,7 @@
     },
     {
       "id": "images_overlap_significantly",
-      "text": "Образы существенно перекрываются",
+      "text": "Are the images overlapping?",
       "next": [
         {
           "coef": 0,
@@ -100,55 +100,55 @@
   "consequent": [
     {
       "id": "bad_nn_basis",
-      "text": "Перевод в нейросетевой базис нецелесообразен",
+      "text": "Translation into a neural network basis is inexpedient",
       "coef": 0.9,
       "next": "determine_class"
     },
     {
       "id": "determine_class",
-      "text": "Определить класс ИНС",
+      "text": "Determine the ANN class",
       "coef": 1,
       "next": "linear_algorithm"
     },
     {
       "id": "lead_to_neurointerpret_sight",
-      "text": "Осуществить преобразование модели к нейроинтерпретируемому виду",
+      "text": "Convert the model to the interpreted form",
       "coef": 1,
       "next": null
     },
     {
       "id": "choose_RNN",
-      "text": "Выбрать архитектуру рекуррентной ИНС",
+      "text": "Select the architecture of a recurrent INS",
       "coef": 1,
       "next": null
     },
     {
       "id": "choose_perceptron",
-      "text": "Выбрать многослойный персептрон",
+      "text": "Select multilayer perceptron",
       "coef": 0.8,
       "next": null
     },
     {
       "id": "choose_RNN_2",
-      "text": "Выбрать архитектуру рекуррентной ИНС",
+      "text": "Select the architecture of a recurrent INS",
       "coef": 1,
       "next": "images_overlap_significantly"
     },
     {
       "id": "choose_hemming",
-      "text": "Выбрать сеть Хемминга",
+      "text": "Choose a Hamming Network",
       "coef": 1,
       "next": null
     },
     {
       "id": "choose_combined",
-      "text": "Выбрать комбинированную структуру",
+      "text": "Select combined structure",
       "coef": 0.8,
       "next": null
     },
     {
       "id": "choose_hopfield",
-      "text": "Выбрать сеть Хопфилда",
+      "text": "Choose a Hopfield Network",
       "coef": 1,
       "next": null
     }

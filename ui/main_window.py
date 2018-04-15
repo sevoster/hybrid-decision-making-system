@@ -1,9 +1,11 @@
 import os.path
 from enum import Enum
+import json
 
 from PyQt5.QtWidgets import QMainWindow, QAction, qApp, QFileDialog, QMessageBox
 
 from core.decision_system import DecisionSystem
+from ui.tabs_view import TabView
 
 
 class MainWindow(QMainWindow):
@@ -16,6 +18,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.decision_system = DecisionSystem()
+        self.tab_view = TabView(self)
 
         self.setup_ui()
 
@@ -28,6 +31,7 @@ class MainWindow(QMainWindow):
         self.statusBar().showMessage('Hello World!')
 
         self.setWindowTitle("Decision Maker")
+        self.setCentralWidget(self.tab_view)
         self.show()
         pass
 
@@ -68,5 +72,12 @@ class MainWindow(QMainWindow):
             return
 
         # TODO: apply new rules from file into decision system
-
+        with open(file_name, 'r') as f:
+            try:
+                json_content = json.load(f)
+                pretty_json = json.dumps(json_content, indent=4, sort_keys=True)
+                self.tab_view.decision_tree_tab.set_text(pretty_json)
+            except json.JSONDecodeError as e:
+                self.show_message("Error while parsing JSON: " + e.msg, self.MessageType.Error)
+                return
         pass
