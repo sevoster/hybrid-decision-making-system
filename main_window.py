@@ -53,8 +53,8 @@ class MainWindow(QMainWindow):
         file_menu.addAction(exit_action)
         pass
 
-    def show_message(self, content, type):
-        if type == self.MessageType.Error:
+    def show_message(self, content, msg_type):
+        if msg_type == self.MessageType.Error:
             QMessageBox.critical(self, 'Error', content)
         pass
 
