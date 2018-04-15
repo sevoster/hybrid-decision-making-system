@@ -1,7 +1,7 @@
-import os.path
-from enum import Enum
 import json
+from enum import Enum
 
+import os.path
 from PyQt5.QtWidgets import QMainWindow, QAction, qApp, QFileDialog, QMessageBox
 
 from core.decision_system import DecisionSystem
@@ -76,8 +76,14 @@ class MainWindow(QMainWindow):
             try:
                 json_content = json.load(f)
                 pretty_json = json.dumps(json_content, indent=4, sort_keys=True)
-                self.tab_view.decision_tree_tab.set_text(pretty_json)
             except json.JSONDecodeError as e:
                 self.show_message("Error while parsing JSON: " + e.msg, self.MessageType.Error)
                 return
+
+        if json_content is not None:
+            self.decision_system.apply_decision_tree(json_content)
+            pass
+        if pretty_json is not None:
+            self.tab_view.decision_tree_tab.set_text(pretty_json)
+            pass
         pass
