@@ -1,0 +1,156 @@
+{
+  "precedent": [
+    {
+      "id": "task_formalized",
+      "text": "Задача формализуема",
+      "next": [
+        {
+          "coef": 1,
+          "id": "solved_in_time"
+        },
+        {
+          "coef": 0.8,
+          "id": "nn_interpret_obvious"
+        },
+        {
+          "coef": 0.7,
+          "id": "image_recognition_task"
+        }
+      ]
+    },
+    {
+      "id": "solved_in_time",
+      "text": "Разрешима в приемлимое время",
+      "next": [
+        {
+          "coef": 1,
+          "id": "bad_nn_basis"
+        },
+        {
+          "coef": 0,
+          "id": "nn_interpret_obvious"
+        }
+      ]
+    },
+    {
+      "id": "image_recognition_task",
+      "text": "Задача типа распознавания образов",
+      "next": [
+        {
+          "coef": 1,
+          "id": "choose_perceptron"
+        },
+        {
+          "coef": 1,
+          "id": "choose_RNN_2"
+        },
+        {
+          "coef": 0,
+          "id": null
+        }
+      ]
+    },
+    {
+      "id": "nn_interpret_obvious",
+      "text": "Нейросетевая интерпретация модели очевидна",
+      "next": [
+        {
+          "coef": 1,
+          "id": "determine_class"
+        },
+        {
+          "coef": 0,
+          "id": "lead_to_neurointerpret_sight"
+        }
+      ]
+    },
+    {
+      "id": "linear_algorithm",
+      "text": "Алгоритм преобразования линейный",
+      "next": [
+        {
+          "coef": 1,
+          "id": null
+        },
+        {
+          "coef": 0,
+          "id": "choose_RNN"
+        }
+      ]
+    },
+    {
+      "id": "images_overlap_significantly",
+      "text": "Образы существенно перекрываются",
+      "next": [
+        {
+          "coef": 0,
+          "id": "choose_hemming"
+        },
+        {
+          "coef": 0.6,
+          "id": "choose_combined"
+        },
+        {
+          "coef": 1,
+          "id": "choose_hopfield"
+        }
+      ]
+    }
+  ],
+  "consequent": [
+    {
+      "id": "bad_nn_basis",
+      "text": "Перевод в нейросетевой базис нецелесообразен",
+      "coef": 0.9,
+      "next": "determine_class"
+    },
+    {
+      "id": "determine_class",
+      "text": "Определить класс ИНС",
+      "coef": 1,
+      "next": "linear_algorithm"
+    },
+    {
+      "id": "lead_to_neurointerpret_sight",
+      "text": "Осуществить преобразование модели к нейроинтерпретируемому виду",
+      "coef": 1,
+      "next": null
+    },
+    {
+      "id": "choose_RNN",
+      "text": "Выбрать архитектуру рекуррентной ИНС",
+      "coef": 1,
+      "next": null
+    },
+    {
+      "id": "choose_perceptron",
+      "text": "Выбрать многослойный персептрон",
+      "coef": 0.8,
+      "next": null
+    },
+    {
+      "id": "choose_RNN_2",
+      "text": "Выбрать архитектуру рекуррентной ИНС",
+      "coef": 1,
+      "next": "images_overlap_significantly"
+    },
+    {
+      "id": "choose_hemming",
+      "text": "Выбрать сеть Хемминга",
+      "coef": 1,
+      "next": null
+    },
+    {
+      "id": "choose_combined",
+      "text": "Выбрать комбинированную структуру",
+      "coef": 0.8,
+      "next": null
+    },
+    {
+      "id": "choose_hopfield",
+      "text": "Выбрать сеть Хопфилда",
+      "coef": 1,
+      "next": null
+    }
+  ]
+}

@@ -59,7 +59,7 @@ class MainWindow(QMainWindow):
         pass
 
     def import_file(self):
-        file_name = QFileDialog.getOpenFileName(self, 'Import decision tree file')[0]
+        file_name = QFileDialog.getOpenFileName(self, 'Import decision tree file', filter="JSON files (*.json)")[0]
         if not file_name:
             return
 
