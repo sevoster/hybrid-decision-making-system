@@ -80,9 +80,6 @@ class MainWindow(QMainWindow):
                 self.show_message("Error while parsing JSON: " + e.msg, self.MessageType.Error)
                 return
 
-        if json_content is not None:
-            self.decision_system.apply_decision_tree(json_content)
-            pass
         if pretty_json is not None:
             self.tab_view.decision_tree_tab.set_text(pretty_json)
             pass
