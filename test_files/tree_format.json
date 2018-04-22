@@ -1,0 +1,38 @@
+{
+  "text": "Is it work?",
+  "type": "a",
+  "id": 0,
+  "children": [
+    {
+      "text": "Well Done!",
+      "type": "c",
+      "coefficient": 1,
+      "id": 1
+    },
+    {
+      "text": "Check and come back",
+      "type": "c",
+      "coefficient": 1,
+      "id": 2
+    },
+    {
+      "text": "Because of you?",
+      "type": "a",
+      "id": 3,
+      "children": [
+        {
+          "text": "Call to service",
+          "type": "c",
+          "coefficient": 0.8,
+          "id": 4
+        },
+        {
+          "text": "Try to reboot",
+          "type": "c",
+          "coefficient": 0.6,
+          "id": 5
+        }
+      ]
+    }
+  ]
+}

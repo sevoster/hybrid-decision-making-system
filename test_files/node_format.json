@@ -1,0 +1,68 @@
+{
+  "directed": true,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "text": "Is it work?",
+      "type": "a",
+      "id": 0
+    },
+    {
+      "text": "Well Done!",
+      "type": "c",
+      "coefficient": 1,
+      "id": 1
+    },
+    {
+      "text": "Check and come back",
+      "type": "c",
+      "coefficient": 1,
+      "id": 2
+    },
+    {
+      "text": "Because of you?",
+      "type": "a",
+      "id": 3
+    },
+    {
+      "text": "Call to service",
+      "type": "c",
+      "coefficient": 0.8,
+      "id": 4
+    },
+    {
+      "text": "Try to reboot",
+      "type": "c",
+      "coefficient": 0.6,
+      "id": 5
+    }
+  ],
+  "links": [
+    {
+      "weight": 1,
+      "source": 0,
+      "target": 1
+    },
+    {
+      "weight": 0.9,
+      "source": 0,
+      "target": 2
+    },
+    {
+      "weight": 0,
+      "source": 0,
+      "target": 3
+    },
+    {
+      "weight": 0.3,
+      "source": 3,
+      "target": 4
+    },
+    {
+      "weight": 0.7,
+      "source": 3,
+      "target": 5
+    }
+  ]
+}
