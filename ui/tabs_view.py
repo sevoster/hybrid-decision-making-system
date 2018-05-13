@@ -28,5 +28,6 @@ class TabView(QWidget):
         self.setLayout(self.layout)
         pass
 
-
-
+    def display_expert_knowledge(self, decision_graph):
+        self.decision_tree_tab.display(decision_graph)
+        pass

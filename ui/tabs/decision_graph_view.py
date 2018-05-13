@@ -1,3 +1,5 @@
+import json
+
 from PyQt5 import QtCore
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QScrollArea
@@ -23,7 +25,7 @@ class DecisionGraphView(QWidget):
         self.setLayout(self.layout)
         pass
 
-    # temporary
-    def set_text(self, text):
-        self.message_label.setText(text)
+    def display(self, decision_graph):
+        pretty = json.dumps(decision_graph, indent=4)
+        self.message_label.setText(pretty)
         pass
