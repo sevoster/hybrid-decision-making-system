@@ -80,5 +80,6 @@ class MainWindow(QMainWindow):
 				self.show_message("Error while parsing JSON: " + e.msg, self.MessageType.Error)
 				return
 
+		self.decision_system.apply_decision_graph(json_content)
 		self.tab_view.display_expert_knowledge(json_content)
 		pass
