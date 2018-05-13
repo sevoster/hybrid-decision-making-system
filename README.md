@@ -3,4 +3,3 @@ Diploma work. The goal is to create a hybrid system consisting of analytical and
 
 ## Dependencies
 Using PyQt5 as GUI framework
-Using PyTorch to build neural networks
