@@ -57,36 +57,11 @@ class MongoKnowledgeBaseTestCase(unittest.TestCase):
 	def setUp(self):
 		super().setUp()
 		self.mongo = MongoKnowledgeBase(test_settings['database'], test_settings['mongo_url'], test_settings['mongo_port'])
-		self.nodes_count = len(test_graph['nodes'])
-		self.links_count = len(test_graph['links'])
+		self.mongo.set_decision_graph(test_graph)
 		pass
 
 	def is_mongo_data_equals(self, json_graph):
-		nodes_count = len(json_graph['nodes'])
-		links_count = len(json_graph['links'])
-		if self.mongo.nodes.count() != nodes_count:
-			return False
-		if self.mongo.links.count() != links_count:
-			return False
-
-		source_nodes = []
-		for node in self.mongo.nodes.find():
-			node.pop('_id', None)
-			source_nodes.append(node)
-			pass
-
-		if source_nodes != json_graph['nodes']:
-			return False
-
-		source_links = []
-		for link in self.mongo.links.find():
-			link.pop('_id', None)
-			source_links.append(link)
-			pass
-
-		if source_links != json_graph['links']:
-			return False
-		return True
+		return self.mongo.get_nodes() == json_graph['nodes'] and self.mongo.get_links() == json_graph['links']
 
 	def test_helper_equal_method(self):
 		right_graph = {"nodes": [{"test": 0}], "links": [{"test1": 1}]}
@@ -96,15 +71,26 @@ class MongoKnowledgeBaseTestCase(unittest.TestCase):
 		self.assertFalse(self.is_mongo_data_equals(wrong_graph))
 		pass
 
-	def test_set_graph_count(self):
-		self.mongo.set_decision_graph(test_graph)
+	def test_set_graph(self):
 		self.assertTrue(self.is_mongo_data_equals(test_graph))
 		pass
 
 	def test_repeated_set_graph(self):
 		self.mongo.set_decision_graph(test_graph)
-		self.mongo.set_decision_graph(test_graph)
 		self.assertTrue(self.is_mongo_data_equals(test_graph))
+		pass
+
+	def test_set_bad_graph(self):
+		self.assertRaises(Exception, self.mongo.set_decision_graph, {"I'm a big bad graph": "What you say"}, msg="He's gonna huff & puff")
+		pass
+
+	def test_find_antecedents(self):
+		ants = self.mongo.find_antecedents()
+		self.assertGreater(len(ants), 0, "There is no antecedent found in test graph")
+		for ant_id in ants:
+			fact = self.mongo.get_by_id(ant_id)
+			self.assertIsNotNone(fact)
+			self.assertEqual(fact['type'], 'a')  # TODO: refactor when types come
 		pass
 
 
