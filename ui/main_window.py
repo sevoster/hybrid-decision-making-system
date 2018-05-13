@@ -27,8 +27,8 @@ class MainWindow(QMainWindow):
     def setup_ui(self):
         self.resize(800, 600)
         self.init_menu()
-        # TODO: remove
-        self.statusBar().showMessage('Hello World!')
+
+        self.statusBar().showMessage('Ready to start')
 
         self.setWindowTitle("Decision Maker")
         self.setCentralWidget(self.tab_view)
@@ -62,6 +62,8 @@ class MainWindow(QMainWindow):
             QMessageBox.critical(self, 'Error', content)
         pass
 
+    # Only one json format is supported
+    # TODO: move logic in parsers
     def import_file(self):
         file_name = QFileDialog.getOpenFileName(self, 'Import decision tree file', filter="JSON files (*.json)")[0]
         if not file_name:
@@ -71,7 +73,6 @@ class MainWindow(QMainWindow):
             self.show_message('File does not exist: ' + file_name, self.MessageType.Error)
             return
 
-        # TODO: apply new rules from file into decision system
         with open(file_name, 'r') as f:
             try:
                 json_content = json.load(f)
