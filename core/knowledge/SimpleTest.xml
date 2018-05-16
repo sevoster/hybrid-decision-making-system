@@ -10,7 +10,7 @@
         <mxCell id="3" value="Выбрать всё (0.5)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
             <mxGeometry x="75" y="560" width="310" height="210" as="geometry"/>
         </mxCell>
-        <mxCell id="4" value="Да (0.5)" style="endArrow=block;endSize=16;endFill=0;html=1;" edge="1" source="2"
+        <mxCell id="4" value="0.5" style="endArrow=block;endSize=16;endFill=0;html=1;" edge="1" source="2"
                 target="3" parent="1">
             <mxGeometry width="160" relative="1" as="geometry">
                 <mxPoint x="80" y="790" as="sourcePoint"/>

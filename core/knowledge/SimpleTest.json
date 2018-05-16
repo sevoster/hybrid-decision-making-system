@@ -17,7 +17,7 @@
     ],
     "links": [
         {
-            "weight": "Да (0.5)",
+            "weight": "0.5",
             "source": "2",
             "target": "3"
         }
