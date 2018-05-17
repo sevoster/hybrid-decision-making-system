@@ -1,5 +1,6 @@
 import json
 import core.neural_network.Builder.BuildingStrategy as BuildingStrategy
+from core.neural_network.Drawer.main import draw_net
 
 class IBuilder:
     def build_net(self, building_data):
@@ -23,4 +24,5 @@ class Builder(IBuilder):
 
 builder = Builder()
 net = builder.build_net(builder.parse_json(''))
-net.print_net()
+# net.print_net()
+draw_net(net)

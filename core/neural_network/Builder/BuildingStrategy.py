@@ -51,7 +51,7 @@ class CoefsToWeightsBuilding(IBuildingStrategy):
         return self.neural_net
 
     def traverse(self, node, sender, index, weight):
-        self.neural_net.print_net()
+        # self.neural_net.print_net()
         if node['type'] == 'rectangle':
             if len(self.neural_net.levels) < index + 1:
                 self.neural_net.levels.append(NeuralLevel())
