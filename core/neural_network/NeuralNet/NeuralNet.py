@@ -1,5 +1,7 @@
-class INeuralNet:
+from core.neural_network.NeuralNet.NeuralLevel import NeuralLevel
 
+
+class INeuralNet:
     def get_answer(self, input):
         raise NotImplementedError()
 
@@ -8,10 +10,11 @@ class INeuralNet:
 
 
 class NeuralNet(INeuralNet):
-
     def __init__(self):
         self.levels = list()
         self.answer = list()
+        self.sensor_level = NeuralLevel()
+        self.motor_layer = NeuralLevel()
 
     def get_answer(self, input):
         self.answer = list()
@@ -35,8 +38,40 @@ class NeuralNet(INeuralNet):
     def get_levels(self):
         return self.levels
 
+    def get_sensor_level(self):
+        return self.get_sensor_level
+
+    def get_motor_level(self):
+        return self.motor_layer
+
     def print_answer(self):
         str = ''
         for value in self.answer:
             str += value
+        print(str)
+
+    def print_net(self):
+        str = 'sensor: '
+        for neuron in self.sensor_level.get_neurons():
+            str += neuron.id + '('
+            for link in neuron.links:
+                str += '{} w={}; '.format(link.target.id, link.weight)
+            str += ') '
+        print(str)
+
+        for level in self.levels:
+            str = 'hidden: '
+            for neuron in level.get_neurons():
+                str += neuron.id + '('
+                for link in neuron.links:
+                    str += '{} w={}; '.format(link.target.id,link.weight)
+                str += ') '
+            print(str)
+
+        str = 'motor: '
+        for neuron in self.motor_layer.get_neurons():
+            str += neuron.id + '('
+            for link in neuron.links:
+                str += '{} w={}; '.format(link.target.id, link.weight)
+            str += ') '
         print(str)

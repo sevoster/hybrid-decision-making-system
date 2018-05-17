@@ -1,0 +1,25 @@
+{
+    "directed": "true",
+    "multigraph": "false",
+    "graph": {},
+    "nodes": [
+        {
+            "text": "Все нормально?",
+            "type": "ellipse",
+            "id": "2"
+        },
+        {
+            "text": "Выбрать всё (0.5)",
+            "type": "rectangle",
+            "id": "3",
+            "coefficient": "0.5"
+        }
+    ],
+    "links": [
+        {
+            "weight": "0.5",
+            "source": "2",
+            "target": "3"
+        }
+    ]
+}
