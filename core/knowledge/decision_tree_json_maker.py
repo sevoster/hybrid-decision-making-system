@@ -4,6 +4,7 @@ import sys
 import json
 from PyQt5.QtWidgets import (QWidget,QFileDialog, QPushButton, QApplication)
 
+
 class Parser(QWidget):
     def __init__(self):
         super().__init__()
@@ -58,6 +59,7 @@ class Parser(QWidget):
                         "target": cell.attrib['target']
                     })
         return json
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
