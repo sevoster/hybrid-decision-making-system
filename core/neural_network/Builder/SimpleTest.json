@@ -11,18 +11,35 @@
         {
             "text": "Сделать нормально (0.7)",
             "type": "rectangle",
-            "id": "4",
+            "id": "3",
             "coefficient": "0.7"
         },
         {
             "text": "Всё плохо?",
             "type": "ellipse",
-            "id": "14"
+            "id": "5"
         },
         {
             "text": "Сделать нормально (1)",
             "type": "rectangle",
-            "id": "19",
+            "id": "7",
+            "coefficient": "1"
+        },
+        {
+            "text": "Получилось сделать нормально?",
+            "type": "ellipse",
+            "id": "9"
+        },
+        {
+            "text": "Сделать круто(1)",
+            "type": "rectangle",
+            "id": "11",
+            "coefficient": "1"
+        },
+        {
+            "text": "Сделать хорошо(1)",
+            "type": "rectangle",
+            "id": "14",
             "coefficient": "1"
         }
     ],
@@ -30,17 +47,32 @@
         {
             "weight": "0",
             "source": "2",
-            "target": "14"
+            "target": "5"
         },
         {
             "weight": "0.5",
-            "source": "14",
-            "target": "4"
+            "source": "5",
+            "target": "3"
         },
         {
             "weight": "1",
-            "source": "14",
-            "target": "19"
+            "source": "5",
+            "target": "7"
+        },
+        {
+            "weight": "1",
+            "source": "7",
+            "target": "9"
+        },
+        {
+            "weight": "1",
+            "source": "9",
+            "target": "11"
+        },
+        {
+            "weight": "1",
+            "source": "9",
+            "target": "14"
         }
     ]
 }

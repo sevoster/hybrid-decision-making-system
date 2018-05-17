@@ -24,5 +24,5 @@ class Builder(IBuilder):
 
 builder = Builder()
 net = builder.build_net(builder.parse_json(''))
-# net.print_net()
+net.print_net()
 draw_net(net)

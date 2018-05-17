@@ -43,7 +43,7 @@ class CoefsToWeightsBuilding(IBuildingStrategy):
                         self.neural_net.sensor_level.add_neuron(
                             Neuron(id=id, sensor_weigth=arc['weight'], text=node['text'] + '|' + arc['weight']))
 
-        for neuron in self.neural_net.sensor_level.get_neurons():
+        for neuron in self.neural_net.sensor_level.neurons:
             for arc in self.arcs:
                 if arc['source'] == neuron.id and arc['weight'] == neuron.sensor_weight:
                     self.traverse(sender=neuron, node=self.nodes[arc['target']],
@@ -56,24 +56,20 @@ class CoefsToWeightsBuilding(IBuildingStrategy):
             if len(self.neural_net.levels) < index + 1:
                 self.neural_net.levels.append(NeuralLevel())
 
-            targets = self.get_targets_ids_by_id(node['id'])
+            if len(self.get_targets_ids_by_id(node['id'])) == 0:
+                neuron = self.get_neuron_by_id(node['id'])
 
-            if len(targets) == 0:
-                neuron = self.neural_net.levels[index].get_neuron_by_id(node['id'])
                 if neuron:
                     sender.add_link(weight=weight, target=neuron)
                 else:
-                    m_neuron = self.neural_net.motor_layer.add_neuron(Neuron(id=node['id'] + 'm', text=node['text'],
-                                                                             func=lambda x: x))
-
+                    m_neuron = self.neural_net.motor_layer.add_neuron(Neuron(id=node['id'] + 'm', text=node['text'], func=lambda x: x))
                     h_neuron = self.neural_net.levels[index].add_neuron(Neuron(id=node['id'], text=node['text']))
                     sender.add_link(weight=weight, target=h_neuron)
                     h_neuron.add_link(weight=node['coefficient'], target=m_neuron)
-
             else:
-                neuron = self.neural_net.levels[index].get_neuron_by_id(node['id'])
-                if neuron:
-                    sender.add_link(weight=weight, target=neuron)
+                fneuron = self.get_neuron_by_id(node['id'])
+                if fneuron:
+                    sender.add_link(weight=weight, target=fneuron)
                 else:
                     h_neuron = self.neural_net.levels[index].add_neuron(Neuron(id=node['id'], text=node['text']))
                     sender.add_link(weight=weight, target=h_neuron)
@@ -86,8 +82,14 @@ class CoefsToWeightsBuilding(IBuildingStrategy):
                     self.traverse(self.nodes[arc['target']], sender, index, weight)
 
     def get_targets_ids_by_id(self, id):
-        target_ids = []
+        target_ids = list()
         for arc in self.arcs:
-            if arc['source'] == id:
-                target_ids.append(id)
+            if arc['source'] == str(id):
+                target_ids.append(str(id))
         return target_ids
+
+    def get_neuron_by_id(self, id):
+        for level in self.neural_net.levels:
+            for neuron in level.neurons:
+                if str(neuron.id) == str(id):
+                    return neuron

@@ -26,11 +26,6 @@ class NeuralLevel(INeuralLevel):
     def get_neurons(self):
         return self.neurons
 
-    def get_neuron_by_id(self, id):
-        for neuron in self.neurons:
-            if neuron.id == id:
-                return neuron
-
     def get_index(self):
         return self.index
 
