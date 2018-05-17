@@ -41,16 +41,17 @@ class CoefsToWeightsBuilding(IBuildingStrategy):
                 for arc in self.arcs:
                     if arc['source'] == id:
                         self.neural_net.sensor_level.add_neuron(
-                            Neuron(id=id, text=node['text'] + '|' + arc['weight']))
+                            Neuron(id=id, sensor_weigth=arc['weight'], text=node['text'] + '|' + arc['weight']))
 
         for neuron in self.neural_net.sensor_level.get_neurons():
             for arc in self.arcs:
-                if arc['source'] == neuron.id:
+                if arc['source'] == neuron.id and arc['weight'] == neuron.sensor_weight:
                     self.traverse(sender=neuron, node=self.nodes[arc['target']],
                                   index=0, weight=arc['weight'])
         return self.neural_net
 
     def traverse(self, node, sender, index, weight):
+        self.neural_net.print_net()
         if node['type'] == 'rectangle':
             if len(self.neural_net.levels) < index + 1:
                 self.neural_net.levels.append(NeuralLevel())
@@ -58,7 +59,7 @@ class CoefsToWeightsBuilding(IBuildingStrategy):
             targets = self.get_targets_ids_by_id(node['id'])
 
             if len(targets) == 0:
-                neuron = self.neural_net.motor_layer.get_neuron_by_id(node['id'] + 'm')
+                neuron = self.neural_net.levels[index].get_neuron_by_id(node['id'])
                 if neuron:
                     sender.add_link(weight=weight, target=neuron)
                 else:

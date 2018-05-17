@@ -55,8 +55,8 @@ class NeuralNet(INeuralNet):
         for neuron in self.sensor_level.get_neurons():
             str += neuron.id + '('
             for link in neuron.links:
-                str += '{} w={}; '.format(link.target.id, link.weight)
-            str += ') '
+                str += '{}-{}; '.format(link.target.id, link.weight)
+            str += ').........'
         print(str)
 
         for level in self.levels:
@@ -64,14 +64,15 @@ class NeuralNet(INeuralNet):
             for neuron in level.get_neurons():
                 str += neuron.id + '('
                 for link in neuron.links:
-                    str += '{} w={}; '.format(link.target.id,link.weight)
-                str += ') '
+                    str += '{}-{}; '.format(link.target.id,link.weight)
+                str += ').........'
             print(str)
 
         str = 'motor: '
         for neuron in self.motor_layer.get_neurons():
             str += neuron.id + '('
             for link in neuron.links:
-                str += '{} w={}; '.format(link.target.id, link.weight)
-            str += ') '
+                str += '{}-{}; '.format(link.target.id, link.weight)
+            str += ').........'
         print(str)
+        print()

@@ -32,7 +32,7 @@ class INeuron:
 
 
 class Neuron(INeuron):
-    def __init__(self, id, text='', links=None, threshold=0, param_a=1, func=None):
+    def __init__(self, id, text='', links=None, threshold=0, param_a=1, func=None, sensor_weigth = ''):
         self.links = links or []
         self.threshold = threshold
         self.param_a = param_a
@@ -41,6 +41,7 @@ class Neuron(INeuron):
         self.id = id
         self.text = text
         self.func = func
+        self.sensor_weight = sensor_weigth
         if not self.func:
             self.func = self.sigmoid
 
