@@ -34,3 +34,7 @@ class WorkingMemoryHandler:
 			self.memory.append(self.MemoryInstance(fact_id))
 			pass
 		pass
+
+	def get_next_not_inited(self):
+		not_inited = [x for x in self.memory if not x.is_inited()]
+		return min(not_inited, key=lambda x: x.id)

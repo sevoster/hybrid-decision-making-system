@@ -27,4 +27,6 @@ class DecisionSystem:
 		pass
 
 	def start_output(self):
+		for mem in self.working_memory.memory:
+			print(mem.id)
 		pass

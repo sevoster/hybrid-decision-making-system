@@ -1,8 +1,9 @@
 from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QPushButton, QSlider, QScrollArea, QFrame
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, pyqtSignal, pyqtSlot
 
 
 class QuestionForm(QWidget):
+	finished = pyqtSignal(QWidget)
 
 	def __init__(self, text, callback=None, parent=None):
 		super(QWidget, self).__init__(parent)
@@ -32,6 +33,7 @@ class QuestionForm(QWidget):
 	def on_clicked(self):
 		if self.callback is not None:
 			self.callback(self.slider.value())
+		self.finished.emit(self)
 		pass
 
 	def slider_position_changed(self):
@@ -53,7 +55,7 @@ class RunView(QWidget):
 		super(QWidget, self).__init__(parent)
 
 		# TODO: implement
-		self.__layout = QVBoxLayout(self)
+		self.__layout = QVBoxLayout()
 
 		self.__run_button = QPushButton("Run")
 
@@ -70,11 +72,22 @@ class RunView(QWidget):
 		self.__layout.addWidget(self.__run_button, alignment=Qt.AlignCenter)
 		self.__layout.addWidget(scroll_area)
 
-		#TODO: Test
-		for i in range(100):
-			self.__question_list.addWidget(LineSeparator(self))
-			self.__question_list.addWidget(QuestionForm("Do you have any problem?"))
-
 		self.setLayout(self.__layout)
+		pass
+
+	def connect_run_button(self, callback):
+		self.__run_button.clicked.connect(callback)
+		pass
+
+	@pyqtSlot(QWidget)
+	def remove_question(self, widget):
+		self.__question_list.removeWidget(widget)
+		widget.deleteLater()
+		pass
+
+	def add_question(self, text, callback=None):
+		new_form = QuestionForm(text, callback)
+		new_form.finished.connect(self.remove_question)
+		self.__question_list.addWidget(new_form)
 		pass
 

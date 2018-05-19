@@ -20,6 +20,8 @@ class MainWindow(QMainWindow):
 		self.decision_system = DecisionSystem()
 		self.tab_view = TabView(self)
 
+		self.tab_view.run_tab.connect_run_button(self.decision_system.start_output)
+
 		self.setup_ui()
 
 		pass
