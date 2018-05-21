@@ -19,7 +19,7 @@ class BFSOutputMechanism(QObject):
 
     def start(self):
         for fact in self.working_memory.memory:
-            self.new_question.emit(self.knowledge.get_fact_by_id(fact.id)['text'])
+            self.new_question.emit(self.knowledge.get_text_description(fact.id))
         pass
 
     def on_answer(self, id, value):

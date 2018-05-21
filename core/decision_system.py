@@ -21,7 +21,8 @@ class DecisionSystem:
 
     def __init__(self):
         self.settings = self.__read_or_create_config()
-        self.knowledge_base = MongoKnowledgeBase(self.settings['database'], self.settings['mongo_url'], self.settings['mongo_port'])
+        self.knowledge_base = MongoKnowledgeBase()
+        self.knowledge_base.connect(self.settings['database'], self.settings['mongo_url'], self.settings['mongo_port'])
         self.working_memory = WorkingMemoryHandler()
         self.output_mechanism = BFSOutputMechanism(self.working_memory, self.knowledge_base)
         pass
