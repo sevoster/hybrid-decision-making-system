@@ -7,7 +7,7 @@ from pymongo import MongoClient
 
 class MongoKnowledgeBase:
     """
-    Use Mongo Database to get and store knowledge data
+    Use Mongo Database to store and manage knowledge data
     """
 
     # Constants
@@ -57,7 +57,14 @@ class MongoKnowledgeBase:
         return self.__facts.find_one({"id": fact_id}, {"_id": 0})
 
     def transform_to_production_rules(self, decision_graph, root=0):
+        """
+        Transform decision graph into production rules and insert in Data Base
+        :param decision_graph: Decision graph in json format
+        :param root: Id of the root
+        :return: Number of inserted rules
+        """
         graph = json_graph.node_link_graph(decision_graph)
+        counter = 0
         for node in graph:
             if graph.out_degree(node) == 0:  # leaf
                 paths = algorithms.all_simple_paths(graph, root, node)
@@ -69,7 +76,8 @@ class MongoKnowledgeBase:
                         "successor": consequent_id
                     }
                     self.__rules.insert_one(rule)
+                    counter += 1
                     pass
                 pass
             pass
-        pass
+        return counter

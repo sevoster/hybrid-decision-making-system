@@ -11,7 +11,6 @@ class DecisionSystem:
     Represents the main core component which aggregates others
     """
 
-    # TODO: temporary here
     DEFAULT_SETTINGS = {
         "mongo_url": "localhost",
         "mongo_port": 27017,
@@ -23,13 +22,18 @@ class DecisionSystem:
     def __init__(self):
         self.settings = self.__read_or_create_config()
         self.knowledge_base = MongoKnowledgeBase(self.settings['database'], self.settings['mongo_url'], self.settings['mongo_port'])
-        self.output_mechanism = BFSOutputMechanism()
         self.working_memory = WorkingMemoryHandler()
+        self.output_mechanism = BFSOutputMechanism(self.working_memory, self.knowledge_base)
+        pass
+
+    # TODO: Bad architecture is here
+    def connect_to_user_interface(self, add_question):
+        self.output_mechanism.new_question.connect(add_question)
         pass
 
     def __read_or_create_config(self):
         """
-        Read config file by path (pwd)/config/settings.json or create one with default parameters.
+        Read config file by path $(pwd)/config/settings.json or create one with default parameters.
         :return: Settings dictionary
         """
         if path.exists(self.CONFIG_PATH):
@@ -50,6 +54,5 @@ class DecisionSystem:
         pass
 
     def start_output(self):
-        for mem in self.working_memory.memory:
-            print(mem.id)
+        self.output_mechanism.start()
         pass

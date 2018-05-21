@@ -21,6 +21,7 @@ class MainWindow(QMainWindow):
         self.tab_view = TabView(self)
 
         self.tab_view.run_tab.connect_run_button(self.decision_system.start_output)
+        self.decision_system.connect_to_user_interface(self.tab_view.run_tab.add_question)
 
         self.setup_ui()
 
