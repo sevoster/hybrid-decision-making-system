@@ -1,7 +1,7 @@
-from core.neural_network.NeuralNet.NeuralNet import NeuralNet
-from core.neural_network.NeuralNet.NeuralLevel import NeuralLevel
-from core.neural_network.NeuralNet.Neuron import Neuron
-from core.neural_network.NeuralNet.Link import Link
+from core.neural_network.neural_net.neural_net import NeuralNet
+from core.neural_network.neural_net.neural_level import NeuralLevel
+from core.neural_network.neural_net.neuron import Neuron
+from core.neural_network.neural_net.link import Link
 
 
 class IBuildingStrategy:

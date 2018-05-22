@@ -1,6 +1,6 @@
 import json
-import core.neural_network.Builder.BuildingStrategy as BuildingStrategy
-from core.neural_network.Drawer.main import draw_net
+import core.neural_network.builder.building_strategy as BuildingStrategy
+from core.neural_network.drawer.main import draw_net
 
 class IBuilder:
     def build_net(self, building_data):

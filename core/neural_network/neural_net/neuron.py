@@ -1,4 +1,4 @@
-from core.neural_network.NeuralNet.Link import Link
+from core.neural_network.neural_net.link import Link
 from math import e
 
 

@@ -1,4 +1,4 @@
-from core.neural_network.NeuralNet.NeuralLevel import NeuralLevel
+from core.neural_network.neural_net.neural_level import NeuralLevel
 
 
 class INeuralNet:
