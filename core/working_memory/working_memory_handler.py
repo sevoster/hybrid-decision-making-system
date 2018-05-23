@@ -25,16 +25,33 @@ class WorkingMemoryHandler:
         def is_inited(self):
             return self.value is not None
 
-    def __init__(self):
-        self.memory = list()
+    def __init__(self, knowledge_base):
+        self.memory = dict()
+        self.knowledge_base = knowledge_base
+        pass
+
+    def init_from_base(self):
+        if self.knowledge_base is None:
+            print("Knowledge base is None")
+            return
+        self.set_fact_ids(self.knowledge_base.find_antecedents())
         pass
 
     def set_fact_ids(self, fact_ids):
         for fact_id in fact_ids:
-            self.memory.append(self.MemoryInstance(fact_id))
+            self.memory[fact_id] = self.MemoryInstance(fact_id)
             pass
         pass
 
     def get_next_not_inited(self):
-        not_inited = [x for x in self.memory if not x.is_inited()]
-        return min(not_inited, key=lambda x: x.id)
+        not_inited = [fact_id for fact_id, mem_instance in self.memory.items() if not mem_instance.is_inited()]
+        if len(not_inited) == 0:
+            return None
+        return min(not_inited)
+
+    def set_by_id(self, fact_id, value):
+        if fact_id not in self.memory:
+            print("Unknown fact id:", fact_id)
+            return
+        self.memory[fact_id].value = value
+        pass

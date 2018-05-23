@@ -5,10 +5,11 @@ from PyQt5.QtCore import Qt, pyqtSignal, pyqtSlot
 class QuestionForm(QWidget):
     finished = pyqtSignal(QWidget)
 
-    def __init__(self, text, callback=None, parent=None):
+    def __init__(self, fact_id, text, callback=None, parent=None):
         super(QWidget, self).__init__(parent)
 
         self.__layout = QVBoxLayout()
+        self.fact_id = fact_id
         self.text = text
         self.callback = callback
 
@@ -32,12 +33,15 @@ class QuestionForm(QWidget):
 
     def on_clicked(self):
         if self.callback is not None:
-            self.callback(self.slider.value())
+            self.callback(self.fact_id, self.get_value())
         self.finished.emit(self)
         pass
 
+    def get_value(self):
+        return self.slider.value() / (self.slider.maximum() - self.slider.minimum())
+
     def slider_position_changed(self):
-        self.value_label.setText(str(self.slider.value() / (self.slider.maximum() - self.slider.minimum())))
+        self.value_label.setText(str(self.get_value()))
         pass
 
 
@@ -85,8 +89,8 @@ class RunView(QWidget):
         widget.deleteLater()
         pass
 
-    def add_question(self, text, callback=None):
-        new_form = QuestionForm(text, callback)
+    def add_question(self, fact_id, text, callback=None):
+        new_form = QuestionForm(fact_id, text, callback)
         new_form.finished.connect(self.remove_question)
         self.__question_list.addWidget(new_form)
         pass

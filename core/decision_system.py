@@ -23,7 +23,7 @@ class DecisionSystem:
         self.settings = self.__read_or_create_config()
         self.knowledge_base = MongoKnowledgeBase()
         self.knowledge_base.connect(self.settings['database'], self.settings['mongo_url'], self.settings['mongo_port'])
-        self.working_memory = WorkingMemoryHandler()
+        self.working_memory = WorkingMemoryHandler(self.knowledge_base)
         self.output_mechanism = BFSOutputMechanism(self.working_memory, self.knowledge_base)
         pass
 
@@ -51,7 +51,7 @@ class DecisionSystem:
 
     def apply_decision_graph(self, decision_graph):
         self.knowledge_base.set_decision_graph(decision_graph)
-        self.working_memory.set_fact_ids(self.knowledge_base.find_antecedents())
+        self.working_memory.init_from_base()
         pass
 
     def start_output(self):

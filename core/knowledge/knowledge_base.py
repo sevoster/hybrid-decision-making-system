@@ -5,6 +5,34 @@ from networkx import algorithms
 from pymongo import MongoClient
 
 
+PREDECESSORS_STRING = "predecessors"
+SUCCESSOR_STRING = "successor"
+ID_STRING = "id"
+COEFFICIENT_STRING = "coefficient"
+
+
+class ProductionRule:
+    class Predecessor:
+        def __init__(self, predecessor_id, coefficient):
+            self.id = predecessor_id
+            self.coefficient = coefficient
+            pass
+
+    class Successor:
+        def __init__(self, successor_id, coefficient):
+            self.id = successor_id
+            self.coefficient = coefficient
+            pass
+
+    def __init__(self, data):
+        if PREDECESSORS_STRING not in data or SUCCESSOR_STRING not in data:
+            raise Exception("Wrong data format for production rule")
+        self.predecessors = [self.Predecessor(predecessor_data[ID_STRING], predecessor_data[COEFFICIENT_STRING])
+                             for predecessor_data in data[PREDECESSORS_STRING]]
+        self.successor = self.Successor(data[SUCCESSOR_STRING][ID_STRING], data[SUCCESSOR_STRING][COEFFICIENT_STRING])
+        pass
+
+
 class MongoKnowledgeBase:
     """
     Use Mongo Database to store and manage knowledge data
@@ -59,13 +87,16 @@ class MongoKnowledgeBase:
     # TODO: handle intermediate consequents
     # TODO: add types and classes for facts (ant, con, incon)
     def find_antecedents(self):
-        return self.__facts.distinct('id', {'type': {"$in": ['a', 'ic']}})
+        return self.__facts.distinct(ID_STRING, {'type': {"$in": ['a', 'ic']}})
 
     def get_fact_by_id(self, fact_id):
-        return self.__facts.find_one({"id": fact_id}, {"_id": 0})
+        return self.__facts.find_one({ID_STRING: fact_id}, {"_id": 0})
 
     def get_text_description(self, fact_id):
         return self.get_fact_by_id(fact_id)['text']
+
+    def get_rules_with_predecessor(self, fact_id):
+        return [ProductionRule(x) for x in self.__rules.find({PREDECESSORS_STRING: fact_id}, {"_id": 0})]
 
     def transform_to_production_rules(self, decision_graph, root=0):
         """
@@ -79,13 +110,16 @@ class MongoKnowledgeBase:
         for node in graph:
             if graph.out_degree(node) == 0:  # leaf
                 paths = algorithms.all_simple_paths(graph, root, node)
+
                 for path in paths:
                     consequent_id = path[-1]
-                    antecedent_ids = path[:-1]
                     rule = {
-                        "predecessors": antecedent_ids,
-                        "successor": consequent_id
+                        PREDECESSORS_STRING: [],
+                        SUCCESSOR_STRING: {ID_STRING: consequent_id, COEFFICIENT_STRING: graph.node[consequent_id][COEFFICIENT_STRING]}
                     }
+
+                    for i in range(len(path) - 1):
+                        rule[PREDECESSORS_STRING].append({ID_STRING: path[i], COEFFICIENT_STRING: graph.get_edge_data(path[i], path[i + 1])['weight']})
                     rules.append(rule)
                     pass
                 pass
