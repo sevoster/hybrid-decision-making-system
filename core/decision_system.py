@@ -52,9 +52,9 @@ class DecisionSystem:
 
     def apply_decision_graph(self, decision_graph):
         self.knowledge_base.set_decision_graph(decision_graph)
-        self.working_memory.init_from_base()
         pass
 
     def start_output(self):
+        self.working_memory.init_from_base()
         self.output_mechanism.start()
         pass

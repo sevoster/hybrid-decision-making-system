@@ -1,5 +1,26 @@
-from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QPushButton, QSlider, QScrollArea, QFrame
+from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QPushButton, QSlider, QScrollArea, QFrame, QTextEdit
+from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt, pyqtSignal, pyqtSlot
+
+
+class ResultView(QWidget):
+    finished = pyqtSignal(QWidget)
+
+    def __init__(self, fact_id, text, parent=None):
+        super(QWidget, self).__init__(parent)
+
+        self.label = QLabel(text)
+        self.label.setFont(QFont('SansSerif', 14))
+
+        self.button = QPushButton("OK")
+        self.button.clicked.connect(lambda: self.finished.emit(self))
+
+        vbox = QVBoxLayout()
+        vbox.addWidget(self.label, alignment=Qt.AlignCenter)
+        vbox.addWidget(self.button, alignment=Qt.AlignCenter)
+
+        self.setLayout(vbox)
+        pass
 
 
 class QuestionForm(QWidget):
@@ -14,11 +35,14 @@ class QuestionForm(QWidget):
         self.callback = callback
 
         question_label = QLabel(text)
+        question_label.setFont(QFont('Times', 12))
+
         self.slider = QSlider(Qt.Horizontal)
         self.slider.setRange(0, 10000)
         self.slider.valueChanged.connect(self.slider_position_changed)
 
-        self.value_label = QLabel(str(self.slider.value()))
+        self.value_label = QTextEdit(str(self.slider.value()))
+        self.value_label.setMaximumHeight(30)
 
         self.send_btn = QPushButton("Send")
         self.send_btn.clicked.connect(self.on_clicked)
@@ -38,10 +62,13 @@ class QuestionForm(QWidget):
         pass
 
     def get_value(self):
-        return self.slider.value() / (self.slider.maximum() - self.slider.minimum())
+        return float(self.value_label.toPlainText())
+
+    def get_range(self):
+        return self.slider.maximum() - self.slider.minimum()
 
     def slider_position_changed(self):
-        self.value_label.setText(str(self.get_value()))
+        self.value_label.setText(str(self.slider.value() / self.get_range()))
         pass
 
 
@@ -96,7 +123,7 @@ class RunView(QWidget):
         pass
 
     def show_result(self, fact_id, text):
-        result_form = QuestionForm(fact_id, text)
+        result_form = ResultView(fact_id, text)
         result_form.finished.connect(self.remove_question)
         self.__question_list.addWidget(result_form)
         pass

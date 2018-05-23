@@ -31,7 +31,7 @@ class BFSOutputMechanism(QObject):
         pass
 
     # TODO: refactor
-    def get_facts_to_ask(self, answered):
+    def search_for_answer(self, answered):
         answer_value = self.working_memory.get_by_id(answered)
         rules = self.knowledge.get_rules_with_predecessor(answered)
         coeffs = [r.get_predecessor_coefficient(answered) for r in rules]
@@ -53,12 +53,13 @@ class BFSOutputMechanism(QObject):
             min_coef = min(suc_coefs)
             result = rules[indices[suc_coefs.index(min_coef)]].successor.id
             self.__push_result(result)
-        return need_to_ask
+        else:
+            for f in need_to_ask:
+                self.__push_new_question(f)
+        pass
 
     def process_answer(self, fact_id, value):
         print("Get answer for {}: {}".format(fact_id, value))
         self.working_memory.set_by_id(fact_id, value)
-        next_facts = self.get_facts_to_ask(fact_id)
-        for fact in next_facts:
-            self.__push_new_question(fact)
+        self.search_for_answer(fact_id)
         pass
