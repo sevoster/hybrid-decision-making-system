@@ -32,6 +32,9 @@ class ProductionRule:
         self.successor = self.Successor(data[SUCCESSOR_STRING][ID_STRING], data[SUCCESSOR_STRING][COEFFICIENT_STRING])
         pass
 
+    def get_predecessor_coefficient(self, predecessor_id):
+        return [x.coefficient for x in self.predecessors if x.id == predecessor_id][0]
+
 
 class MongoKnowledgeBase:
     """
@@ -96,7 +99,7 @@ class MongoKnowledgeBase:
         return self.get_fact_by_id(fact_id)['text']
 
     def get_rules_with_predecessor(self, fact_id):
-        return [ProductionRule(x) for x in self.__rules.find({PREDECESSORS_STRING: fact_id}, {"_id": 0})]
+        return [ProductionRule(x) for x in self.__rules.find({PREDECESSORS_STRING: {'$elemMatch': {ID_STRING: fact_id}}}, {"_id": 0})]
 
     def transform_to_production_rules(self, decision_graph, root=0):
         """

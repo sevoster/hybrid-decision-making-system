@@ -55,3 +55,12 @@ class WorkingMemoryHandler:
             return
         self.memory[fact_id].value = value
         pass
+
+    def get_by_id(self, fact_id):
+        if fact_id not in self.memory:
+            print("Unknown fact id:", fact_id)
+            return None
+        return self.memory[fact_id].value
+
+    def is_inited(self, fact_id):
+        return self.memory[fact_id].is_inited()

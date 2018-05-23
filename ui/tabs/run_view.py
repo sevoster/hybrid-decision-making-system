@@ -94,3 +94,9 @@ class RunView(QWidget):
         new_form.finished.connect(self.remove_question)
         self.__question_list.addWidget(new_form)
         pass
+
+    def show_result(self, fact_id, text):
+        result_form = QuestionForm(fact_id, text)
+        result_form.finished.connect(self.remove_question)
+        self.__question_list.addWidget(result_form)
+        pass

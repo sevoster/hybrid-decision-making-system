@@ -28,8 +28,9 @@ class DecisionSystem:
         pass
 
     # TODO: Bad architecture is here
-    def connect_to_user_interface(self, add_question):
+    def connect_to_user_interface(self, add_question, on_result):
         self.output_mechanism.new_question.connect(add_question)
+        self.output_mechanism.result_found.connect(on_result)
         pass
 
     def __read_or_create_config(self):
