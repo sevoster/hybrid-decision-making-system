@@ -16,7 +16,7 @@ class Builder(IBuilder):
         return self.building_strategy.build_net(building_data)
 
     def parse_json(self, path):
-        with open('SimpleTest.json','r', encoding='utf-8') as file:
+        with open('Basalin.json','r', encoding='utf-8') as file:
             read_data = file.read()
             self.building_data = json.loads(read_data)
         return self.building_data

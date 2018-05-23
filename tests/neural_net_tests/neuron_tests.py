@@ -4,6 +4,23 @@ from core.neural_network.neural_net.neuron import Neuron
 
 
 class NeuronTest(unittest.TestCase):
+
+    def test_iterate_and_indexing_neuron_links(self):
+        neuron_0 = Neuron(id=random.randint(0, 300000), text='first', threshold=0, param_a=1)
+        neuron_1 = Neuron(id=random.randint(0, 300000), text='second', threshold=1, param_a=2)
+        neuron_2 = Neuron(id=random.randint(0, 300000), text='third', threshold=1, param_a=2)
+
+        neuron_0.add_link(1, neuron_1)
+        neuron_0.add_link(1, neuron_2)
+
+        s = ''
+        for link in neuron_0:
+            s += link.target.text
+
+        self.assertEqual(s, 'secondthird')
+        self.assertEqual(neuron_0[0].target.text,'second')
+        self.assertEqual(neuron_0[1].target.text, 'third')
+
     def test_zero_calculate_output(self):
         neuron = Neuron(id=random.randint(0, 300000), threshold=0, param_a=1)
         self.assertEqual(neuron.calculate_output(0), 0.5)

@@ -1,0 +1,168 @@
+{
+    "directed": "true",
+    "multigraph": "false",
+    "graph": {},
+    "nodes": [
+        {
+            "text": "Задача формализуема?",
+            "type": "ellipse",
+            "id": "2"
+        },
+        {
+            "text": "Разрешима в приемлемое время?",
+            "type": "ellipse",
+            "id": "3"
+        },
+        {
+            "text": "Нейросетевая интерпретация модели очевидна?",
+            "type": "ellipse",
+            "id": "4"
+        },
+        {
+            "text": "Задача типа распознавания образов?",
+            "type": "ellipse",
+            "id": "5"
+        },
+        {
+            "text": "Образы существенно пересекаются?",
+            "type": "ellipse",
+            "id": "6"
+        },
+        {
+            "text": "Алгоритм преобразования линейный?",
+            "type": "ellipse",
+            "id": "7"
+        },
+        {
+            "text": "Перевод в нейросетевой базис нецелесообразен (0.9)",
+            "type": "rectangle",
+            "id": "8",
+            "coefficient": "0.9"
+        },
+        {
+            "text": "Определить класс ИНС (1)",
+            "type": "rectangle",
+            "id": "9",
+            "coefficient": "1"
+        },
+        {
+            "text": "Выбрать архитектуру рекуррентной ИНС (1)",
+            "type": "rectangle",
+            "id": "10",
+            "coefficient": "1"
+        },
+        {
+            "text": "Выбрать многослойный персептрон (0.8)",
+            "type": "rectangle",
+            "id": "11",
+            "coefficient": "0.8"
+        },
+        {
+            "text": "Выбрать сеть Хэмминга (1)",
+            "type": "rectangle",
+            "id": "12",
+            "coefficient": "1"
+        },
+        {
+            "text": "Выбрать комбинированную струтуру (0.8)",
+            "type": "rectangle",
+            "id": "13",
+            "coefficient": "0.8"
+        },
+        {
+            "text": "Выбрать сеть Хопфилда (1)",
+            "type": "rectangle",
+            "id": "14",
+            "coefficient": "1"
+        },
+        {
+            "text": "Осуществить преобразование модели к нейроинтерпретируемому виду (1)",
+            "type": "rectangle",
+            "id": "29",
+            "coefficient": "1"
+        },
+        {
+            "text": "Выбрать архитектуру рекуррентной ИНС (1)",
+            "type": "rectangle",
+            "id": "31",
+            "coefficient": "1"
+        }
+    ],
+    "links": [
+        {
+            "weight": "0.7",
+            "source": "2",
+            "target": "5"
+        },
+        {
+            "weight": "1",
+            "source": "2",
+            "target": "3"
+        },
+        {
+            "weight": "0.8",
+            "source": "2",
+            "target": "4"
+        },
+        {
+            "weight": "1",
+            "source": "3",
+            "target": "8"
+        },
+        {
+            "weight": "1",
+            "source": "4",
+            "target": "9"
+        },
+        {
+            "weight": "0",
+            "source": "3",
+            "target": "4"
+        },
+        {
+            "weight": "1",
+            "source": "9",
+            "target": "7"
+        },
+        {
+            "weight": "0",
+            "source": "7",
+            "target": "31"
+        },
+        {
+            "weight": "1",
+            "source": "5",
+            "target": "11"
+        },
+        {
+            "weight": "1",
+            "source": "5",
+            "target": "10"
+        },
+        {
+            "weight": "1",
+            "source": "10",
+            "target": "6"
+        },
+        {
+            "weight": "1",
+            "source": "6",
+            "target": "14"
+        },
+        {
+            "weight": "0.6",
+            "source": "6",
+            "target": "13"
+        },
+        {
+            "weight": "0",
+            "source": "6",
+            "target": "12"
+        },
+        {
+            "weight": "0",
+            "source": "4",
+            "target": "29"
+        }
+    ]
+}

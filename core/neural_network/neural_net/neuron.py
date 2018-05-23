@@ -18,9 +18,6 @@ class INeuron:
     def get_threshold(self):
         raise NotImplementedError()
 
-    def set_threshold(self, threshold):
-        raise NotImplementedError()
-
     def calculate_output(self, value=None):
         raise NotImplementedError()
 
@@ -45,11 +42,11 @@ class Neuron(INeuron):
         if not self.func:
             self.func = self.sigmoid
 
-    def get_id(self):
-        return self.id
+    def __getitem__(self, item):
+        return self.links[item]
 
-    def get_links(self):
-        return self.links
+    def __iter__(self):
+        return self.links.__iter__()
 
     def add_link(self, weight, target):
         self.links.append(Link(weight, target))
@@ -59,12 +56,6 @@ class Neuron(INeuron):
             if link.target == target:
                 self.links.remove(link)
                 return
-
-    def get_threshold(self):
-        return self.threshold
-
-    def set_threshold(self, threshold):
-        self.threshold = threshold
 
     def sigmoid(self, value):
         return 1 / (1 + e ** (-self.param_a * (value - self.threshold)))
@@ -85,6 +76,3 @@ class Neuron(INeuron):
 
     def increase_incoming_value(self, income):
         self.income += income
-
-    def get_text(self):
-        return self.text
