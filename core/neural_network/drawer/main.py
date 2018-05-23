@@ -13,10 +13,31 @@ def get_random_id(id, ids):
     return result
 
 
+def create_arrow(empty_link, neuron, link, ids):
+    line = copy.deepcopy(empty_link)
+    line.attrib['source'] = neuron.id
+    line.attrib['target'] = link.target.id
+    line.attrib['value'] = link.weight
+    line_id = get_random_id(None, ids)
+    line.attrib['id'] = line_id
+    return line
+
+
+def create_circle(empty_neuron, neuron, x, y=None):
+    circle = copy.deepcopy(empty_neuron)
+    circle.attrib['id'] = neuron.id
+    circle.attrib['value'] = neuron.text
+    geometry = circle.find('mxGeometry')
+    geometry.attrib['x'] = str(x)
+    if y:
+        geometry.attrib['y'] = str(y)
+    return circle
+
+
 def draw_net(neural_net):
     ids = set()
 
-    for neuron in neural_net.sensor_level.get_neurons():
+    for neuron in neural_net.sensor_level:
         neuron.id = get_random_id(neuron.id, ids)
 
     tree = etree.parse('Empty.xml')
@@ -36,58 +57,22 @@ def draw_net(neural_net):
     root.remove(ec)
     root.remove(el)
 
-    for x, neuron in enumerate(neural_net.sensor_level.get_neurons()):
-        circle = copy.deepcopy(empty_neuron)
-        circle.attrib['id'] = neuron.id
-        circle.attrib['value'] = neuron.text
-        geometry = circle.find('mxGeometry')
-        geometry.attrib['x'] = str(40 + 440 * x)
-        root.append(circle)
-
-        for link in neuron.get_links():
-            line = copy.deepcopy(empty_link)
-            line.attrib['source'] = neuron.id
-            line.attrib['target'] = link.target.id
-            line.attrib['value'] = link.weight
-            line_id = get_random_id(None, ids)
-            line.attrib['id'] = line_id
-            root.append(line)
+    for x, neuron in enumerate(neural_net.sensor_level):
+        root.append(create_circle(empty_neuron, neuron, 40 + 440 * x))
+        for link in neuron:
+            root.append(create_arrow(empty_link, neuron, link, ids))
 
     y_motor = 1
     for y, layer in enumerate(neural_net.levels):
-        for x, neuron in enumerate(layer.get_neurons()):
-            circle = copy.deepcopy(empty_neuron)
-            circle.attrib['id'] = neuron.id
-            circle.attrib['value'] = neuron.text
-            geometry = circle.find('mxGeometry')
-            geometry.attrib['x'] = str(40 + 360 * x)
-            geometry.attrib['y'] = str(440 + 400 * y)
-            root.append(circle)
-            for link in neuron.get_links():
-                line = copy.deepcopy(empty_link)
-                line.attrib['source'] = neuron.id
-                line.attrib['target'] = link.target.id
-                line.attrib['value'] = link.weight
-                line_id = get_random_id(None, ids)
-                line.attrib['id'] = line_id
-                root.append(line)
+        for x, neuron in enumerate(layer):
+            root.append(create_circle(empty_neuron, neuron, 40 + 360 * x, 440 + 400 * y))
+            for link in neuron:
+                root.append(create_arrow(empty_link, neuron, link, ids))
         y_motor = y + 1
 
-    for x, neuron in enumerate(neural_net.motor_layer.get_neurons()):
-        circle = copy.deepcopy(empty_neuron)
-        circle.attrib['id'] = neuron.id
-        circle.attrib['value'] = neuron.text
-        geometry = circle.find('mxGeometry')
-        geometry.attrib['x'] = str(40 + 360 * x + x * x * 10)
-        geometry.attrib['y'] = str(440 + 400 * y_motor)
-        root.append(circle)
-        for link in neuron.get_links():
-            line = copy.deepcopy(empty_link)
-            line.attrib['source'] = neuron.id
-            line.attrib['target'] = link.target.id
-            line.attrib['value'] = link.weight
-            line_id = get_random_id(None, ids)
-            line.attrib['id'] = line_id
-            root.append(line)
+    for x, neuron in enumerate(neural_net.motor_layer):
+        root.append(create_circle(empty_neuron, neuron, 400 * x + x * x * 10, 840 * y_motor))
+        for link in neuron:
+            root.append(create_arrow(empty_link, neuron, link, ids))
 
     tree.write('output.xml', encoding='utf-8')

@@ -5,9 +5,6 @@ class INeuralNet:
     def get_answer(self, input):
         raise NotImplementedError()
 
-    def get_levels(self):
-        raise NotImplementedError()
-
 
 class NeuralNet(INeuralNet):
     def __init__(self):
@@ -35,15 +32,6 @@ class NeuralNet(INeuralNet):
 
         return self.answer
 
-    def get_levels(self):
-        return self.levels
-
-    def get_sensor_level(self):
-        return self.get_sensor_level
-
-    def get_motor_level(self):
-        return self.motor_layer
-
     def print_answer(self):
         str = ''
         for value in self.answer:
@@ -52,7 +40,7 @@ class NeuralNet(INeuralNet):
 
     def print_net(self):
         str = 'sensor: '
-        for neuron in self.sensor_level.get_neurons():
+        for neuron in self.sensor_level:
             str += neuron.id + '('
             for link in neuron.links:
                 str += '{}-{}; '.format(link.target.id, link.weight)
@@ -61,7 +49,7 @@ class NeuralNet(INeuralNet):
 
         for level in self.levels:
             str = 'hidden: '
-            for neuron in level.get_neurons():
+            for neuron in level:
                 str += neuron.id + '('
                 for link in neuron.links:
                     str += '{}-{}; '.format(link.target.id,link.weight)
@@ -69,7 +57,7 @@ class NeuralNet(INeuralNet):
             print(str)
 
         str = 'motor: '
-        for neuron in self.motor_layer.get_neurons():
+        for neuron in self.motor_layer:
             str += neuron.id + '('
             for link in neuron.links:
                 str += '{}-{}; '.format(link.target.id, link.weight)
