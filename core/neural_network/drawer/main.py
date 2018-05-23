@@ -37,7 +37,7 @@ def create_circle(empty_neuron, neuron, x, y=None):
 def draw_net(neural_net):
     ids = set()
 
-    for neuron in neural_net.sensor_level.get_neurons():
+    for neuron in neural_net.sensor_level:
         neuron.id = get_random_id(neuron.id, ids)
 
     tree = etree.parse('Empty.xml')
@@ -57,20 +57,20 @@ def draw_net(neural_net):
     root.remove(ec)
     root.remove(el)
 
-    for x, neuron in enumerate(neural_net.sensor_level.get_neurons()):
+    for x, neuron in enumerate(neural_net.sensor_level):
         root.append(create_circle(empty_neuron, neuron, 40 + 440 * x))
         for link in neuron:
             root.append(create_arrow(empty_link, neuron, link, ids))
 
     y_motor = 1
     for y, layer in enumerate(neural_net.levels):
-        for x, neuron in enumerate(layer.get_neurons()):
+        for x, neuron in enumerate(layer):
             root.append(create_circle(empty_neuron, neuron, 40 + 360 * x, 440 + 400 * y))
             for link in neuron:
                 root.append(create_arrow(empty_link, neuron, link, ids))
         y_motor = y + 1
 
-    for x, neuron in enumerate(neural_net.motor_layer.get_neurons()):
+    for x, neuron in enumerate(neural_net.motor_layer):
         root.append(create_circle(empty_neuron, neuron, 400 * x + x * x * 10, 840 * y_motor))
         for link in neuron:
             root.append(create_arrow(empty_link, neuron, link, ids))

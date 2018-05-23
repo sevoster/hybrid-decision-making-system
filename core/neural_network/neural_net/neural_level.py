@@ -1,13 +1,4 @@
 class INeuralLevel:
-    def get_neurons(self):
-        raise NotImplementedError()
-
-    def get_index(self):
-        raise NotImplementedError()
-
-    def get_neuron(self,index):
-        raise NotImplementedError()
-
     def add_neuron(self, neuron):
         raise NotImplementedError()
 
@@ -23,14 +14,11 @@ class NeuralLevel(INeuralLevel):
         self.index = int()
         self.neurons = list()
 
-    def get_neurons(self):
-        return self.neurons
+    def __getitem__(self, item):
+        return self.neurons[item]
 
-    def get_index(self):
-        return self.index
-
-    def get_neuron(self,index):
-        return self.neurons[index]
+    def __iter__(self):
+        return self.neurons.__iter__()
 
     def add_neuron(self, neuron):
         self.neurons.append(neuron)
