@@ -76,7 +76,7 @@ class MainWindow(QMainWindow):
             self.show_message('File does not exist: ' + file_name, self.MessageType.Error)
             return
 
-        with open(file_name, 'r') as f:
+        with open(file_name, 'r', encoding='utf-8') as f:
             try:
                 json_content = json.load(f)
             except json.JSONDecodeError as e:

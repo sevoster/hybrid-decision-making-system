@@ -27,10 +27,10 @@ class Parser(QWidget):
                 with open(saved, 'w', encoding='utf-8') as file:
                     file.write(result)
 
-    def parse(self,tree):
+    def parse(self, tree):
         json = {
-            "directed": 'true',
-            "multigraph": 'false',
+            "directed": True,
+            "multigraph": False,
             "graph": {},
             "nodes": [],
             "links": []
@@ -41,22 +41,22 @@ class Parser(QWidget):
                 if str(cell.attrib['style']).find('ellipse') != -1:
                     json["nodes"].append({
                         "text": cell.attrib['value'],
-                        "type": "ellipse",
-                        "id": cell.attrib['id']
+                        "type": "a",
+                        "id": int(cell.attrib['id'])
                     })
                 elif str(cell.attrib['style']).find('rounded=0') != -1:
                     coef = cell.attrib['value'][0:len(cell.attrib['value'])-1].partition('(')[2]
                     json["nodes"].append({
                         "text": cell.attrib['value'],
-                        "type": "rectangle",
-                        "id": cell.attrib['id'],
-                        "coefficient": coef
+                        "type": "c",
+                        "id": int(cell.attrib['id']),
+                        "coefficient": float(coef)
                     })
                 elif str(cell.attrib['style']).find('endArrow') != -1:
                     json["links"].append({
-                        "weight": cell.attrib['value'],
-                        "source": cell.attrib['source'],
-                        "target": cell.attrib['target']
+                        "weight": float(cell.attrib['value']),
+                        "source": int(cell.attrib['source']),
+                        "target": int(cell.attrib['target'])
                     })
         return json
 

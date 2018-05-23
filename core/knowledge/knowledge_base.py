@@ -101,7 +101,13 @@ class MongoKnowledgeBase:
     def get_rules_with_predecessor(self, fact_id):
         return [ProductionRule(x) for x in self.__rules.find({PREDECESSORS_STRING: {'$elemMatch': {ID_STRING: fact_id}}}, {"_id": 0})]
 
-    def transform_to_production_rules(self, decision_graph, root=0):
+    def __find_root(self, graph):
+        for node in graph:
+            if graph.in_degree(node) == 0:
+                return node
+        return None
+
+    def transform_to_production_rules(self, decision_graph):
         """
         Transform decision graph into production rules
         :param decision_graph: Decision graph in json format
@@ -109,6 +115,7 @@ class MongoKnowledgeBase:
         :return: List of production rules
         """
         graph = json_graph.node_link_graph(decision_graph)
+        root = self.__find_root(graph)
         rules = list()
         for node in graph:
             if graph.out_degree(node) == 0:  # leaf
