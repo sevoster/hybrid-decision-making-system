@@ -1,5 +1,3 @@
-import copy
-
 from networkx.readwrite import json_graph
 from networkx import algorithms
 from pymongo import MongoClient
@@ -82,8 +80,9 @@ class MongoKnowledgeBase:
 
     def set_decision_graph(self, decision_graph_data):
         self.__clean_collections()
+        facts = self.transform_to_facts(decision_graph_data)
         rules = self.transform_to_production_rules(decision_graph_data)
-        self.__facts.insert_many(copy.deepcopy(decision_graph_data['nodes']))
+        self.__facts.insert_many(facts)
         self.__rules.insert_many(rules)
         pass
 
@@ -106,6 +105,32 @@ class MongoKnowledgeBase:
             if graph.in_degree(node) == 0:
                 return node
         return None
+
+    def transform_to_facts(self, decision_graph):
+        """
+        Transform nodes from decision graph into facts for data base
+        :param decision_graph: decision graph in json format
+        :return: list of facts
+        """
+        graph = json_graph.node_link_graph(decision_graph)
+        facts = list()
+        for node in graph:
+            attributes = graph.node[node]
+            out = list()
+            for edge in graph.out_edges(node):
+                out.append(graph.edges[edge]['weight'])
+            fact = {
+                "id": node,
+                "type": attributes['type'],
+                "text": attributes['text'],
+                "out": out
+            }
+            if attributes['type'] == 'c':
+                if graph.out_degree(node) != 0:
+                    fact['type'] = 'ic'
+                fact['coefficient'] = attributes['coefficient']
+            facts.append(fact)
+        return facts
 
     def transform_to_production_rules(self, decision_graph):
         """

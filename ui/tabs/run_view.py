@@ -1,4 +1,5 @@
-from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QPushButton, QSlider, QScrollArea, QFrame, QTextEdit
+from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QPushButton, QSlider, QScrollArea, QFrame, QTextEdit, \
+    QButtonGroup, QAbstractButton
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt, pyqtSignal, pyqtSlot
 
@@ -23,7 +24,43 @@ class ResultView(QWidget):
         pass
 
 
-class QuestionForm(QWidget):
+class QuestionFormFixed(QWidget):
+    finished = pyqtSignal(QWidget)
+
+    def __init__(self, fact_id, text, answers, calllback=None, parent=None):
+        super(QWidget, self).__init__(parent)
+
+        self.__layout = QVBoxLayout()
+        self.fact_id = fact_id
+        self.text = text
+        self.callback = calllback
+
+        text_label = QLabel(text)
+        text_label.setFont(QFont('Times', 12))
+
+        button_group = QButtonGroup(self)
+        button_group.buttonClicked['QAbstractButton *'].connect(self.on_clicked)
+
+        self.__layout.addWidget(text_label, alignment=Qt.AlignCenter)
+
+        for answer in answers:
+            button = QPushButton(str(answer))
+            button_group.addButton(button)
+            self.__layout.addWidget(button, alignment=Qt.AlignCenter)
+            pass
+
+        self.setLayout(self.__layout)
+        pass
+
+    @pyqtSlot(QAbstractButton)
+    def on_clicked(self, button):
+        if self.callback is not None:
+            self.callback(self.fact_id, float(button.text()))
+        self.finished.emit(self)
+        pass
+
+
+class QuestionFormSlider(QWidget):
     finished = pyqtSignal(QWidget)
 
     def __init__(self, fact_id, text, callback=None, parent=None):
@@ -117,7 +154,13 @@ class RunView(QWidget):
         pass
 
     def add_question(self, fact_id, text, callback=None):
-        new_form = QuestionForm(fact_id, text, callback)
+        new_form = QuestionFormSlider(fact_id, text, callback)
+        new_form.finished.connect(self.remove_question)
+        self.__question_list.addWidget(new_form)
+        pass
+
+    def add_question_with_answers(self, fact_id, text, answers, callback=None):
+        new_form = QuestionFormFixed(fact_id, text, answers, callback)
         new_form.finished.connect(self.remove_question)
         self.__question_list.addWidget(new_form)
         pass

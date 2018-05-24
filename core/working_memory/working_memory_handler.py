@@ -49,14 +49,14 @@ class WorkingMemoryHandler:
             return None
         return min(not_inited)
 
-    def set_by_id(self, fact_id, value):
+    def set_value_by_id(self, fact_id, value):
         if fact_id not in self.memory:
             print("Unknown fact id:", fact_id)
             return
         self.memory[fact_id].value = value
         pass
 
-    def get_by_id(self, fact_id):
+    def get_value_by_id(self, fact_id):
         if fact_id not in self.memory:
             print("Unknown fact id:", fact_id)
             return None
