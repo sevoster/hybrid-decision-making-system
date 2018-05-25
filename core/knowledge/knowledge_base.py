@@ -48,6 +48,7 @@ class MongoKnowledgeBase:
         self.__data_base = None
         self.__facts = None
         self.__rules = None
+        self.root_facts = list()
         pass
 
     # TODO: error handling
@@ -64,12 +65,11 @@ class MongoKnowledgeBase:
         self.__rules = self.__data_base.rules
         pass
 
-    def __clean_collections(self):
-        if self.__data_base is None:
-            return
-
-        self.__data_base.drop_collection(self.FACTS_COLLECTION_NAME)
-        self.__data_base.drop_collection(self.RULES_COLLECTION_NAME)
+    def __clean(self):
+        if self.__data_base is not None:
+            self.__data_base.drop_collection(self.FACTS_COLLECTION_NAME)
+            self.__data_base.drop_collection(self.RULES_COLLECTION_NAME)
+        self.root_facts = list()
         pass
 
     def facts_count(self):
@@ -79,11 +79,22 @@ class MongoKnowledgeBase:
         return self.__rules.count()
 
     def set_decision_graph(self, decision_graph_data):
-        self.__clean_collections()
-        facts = self.transform_to_facts(decision_graph_data)
-        rules = self.transform_to_production_rules(decision_graph_data)
-        self.__facts.insert_many(facts)
-        self.__rules.insert_many(rules)
+        self.__clean()
+
+        graph = json_graph.node_link_graph(decision_graph_data)
+        consequent_list = list()
+        for node in graph:
+            if graph.in_degree(node) == 0:  # root
+                self.root_facts.append(node)
+            if graph.out_degree(node) == 0:  # leaf
+                consequent_list.append(node)
+
+            self.__facts.insert_one(self.transform_node_to_fact(node, graph))
+            pass
+
+        for rule in self.transform_to_rules(consequent_list, graph):
+            self.__rules.insert_one(rule)
+            pass
         pass
 
     # TODO: handle intermediate consequents
@@ -100,63 +111,45 @@ class MongoKnowledgeBase:
     def get_rules_with_predecessor(self, fact_id):
         return [ProductionRule(x) for x in self.__rules.find({PREDECESSORS_STRING: {'$elemMatch': {ID_STRING: fact_id}}}, {"_id": 0})]
 
-    def __find_root(self, graph):
-        for node in graph:
-            if graph.in_degree(node) == 0:
-                return node
-        return None
+    def transform_node_to_fact(self, node, graph):
+        attributes = graph.node[node]
+        out = list()
+        for edge in graph.out_edges(node):
+            out.append(graph.edges[edge]['weight'])
+        fact = {
+            "id": node,
+            "type": attributes['type'],
+            "text": attributes['text'],
+            "out": out
+        }
+        if attributes['type'] == 'c':
+            if graph.out_degree(node) != 0:
+                fact['type'] = 'ic'
+            fact['coefficient'] = attributes['coefficient']
+        return fact
 
-    def transform_to_facts(self, decision_graph):
-        """
-        Transform nodes from decision graph into facts for data base
-        :param decision_graph: decision graph in json format
-        :return: list of facts
-        """
-        graph = json_graph.node_link_graph(decision_graph)
-        facts = list()
-        for node in graph:
-            attributes = graph.node[node]
-            out = list()
-            for edge in graph.out_edges(node):
-                out.append(graph.edges[edge]['weight'])
-            fact = {
-                "id": node,
-                "type": attributes['type'],
-                "text": attributes['text'],
-                "out": out
-            }
-            if attributes['type'] == 'c':
-                if graph.out_degree(node) != 0:
-                    fact['type'] = 'ic'
-                fact['coefficient'] = attributes['coefficient']
-            facts.append(fact)
-        return facts
-
-    def transform_to_production_rules(self, decision_graph):
-        """
-        Transform decision graph into production rules
-        :param decision_graph: Decision graph in json format
-        :param root: Id of the root
-        :return: List of production rules
-        """
-        graph = json_graph.node_link_graph(decision_graph)
-        root = self.__find_root(graph)
-        rules = list()
-        for node in graph:
-            if graph.out_degree(node) == 0:  # leaf
-                paths = algorithms.all_simple_paths(graph, root, node)
+    def transform_to_rules(self, consequent_list, graph):
+        if len(self.root_facts) == 0:
+            print("Can not add rules: No root elements")
+            return
+        for root in self.root_facts:
+            for consequent in consequent_list:
+                paths = algorithms.all_simple_paths(graph, root, consequent)
 
                 for path in paths:
                     consequent_id = path[-1]
                     rule = {
                         PREDECESSORS_STRING: [],
-                        SUCCESSOR_STRING: {ID_STRING: consequent_id, COEFFICIENT_STRING: graph.node[consequent_id][COEFFICIENT_STRING]}
+                        SUCCESSOR_STRING: {ID_STRING: consequent_id,
+                                           COEFFICIENT_STRING: graph.node[consequent_id][COEFFICIENT_STRING]}
                     }
 
                     for i in range(len(path) - 1):
-                        rule[PREDECESSORS_STRING].append({ID_STRING: path[i], COEFFICIENT_STRING: graph.get_edge_data(path[i], path[i + 1])['weight']})
-                    rules.append(rule)
+                        rule[PREDECESSORS_STRING].append({ID_STRING: path[i],
+                                                          COEFFICIENT_STRING: graph.get_edge_data(path[i], path[i + 1])[
+                                                              'weight']})
+                    yield rule
                     pass
                 pass
             pass
-        return rules
+        pass
