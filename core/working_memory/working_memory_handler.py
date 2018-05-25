@@ -43,12 +43,6 @@ class WorkingMemoryHandler:
             pass
         pass
 
-    def get_next_not_inited(self):
-        not_inited = [fact_id for fact_id, mem_instance in self.memory.items() if not mem_instance.is_inited()]
-        if len(not_inited) == 0:
-            return None
-        return min(not_inited)
-
     def set_value_by_id(self, fact_id, value):
         if fact_id not in self.memory:
             print("Unknown fact id:", fact_id)

@@ -60,7 +60,7 @@ class BFSOutputMechanism(QObject):
             is_intermediate = self.__is_intermediate_consequent(consequent)
             if not is_intermediate:
                 self.__push_result(consequent)
-                pass
+                continue
             self.fact_queue.put(consequent)
             self.working_memory.set_value_by_id(consequent, rule.successor.coefficient)
         pass
