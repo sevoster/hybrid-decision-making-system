@@ -14,6 +14,8 @@ class RunView(QWidget):
         self.__layout = QVBoxLayout()
 
         self.__run_button = QPushButton("Run")
+        self.__run_button.setShortcut("F5")
+
         self.__question_list = QVBoxLayout()
         self.__question_list = QVBoxLayout()
         self.__result_list = QVBoxLayout()
@@ -80,7 +82,7 @@ class RunView(QWidget):
     def add_question_with_answers(self, fact_id, text, answers, callback=None):
         new_form = QuestionFormFixed(fact_id, text, answers, callback)
         new_form.finished.connect(self.remove_question)
-        self.__question_list.addWidget(new_form, stretch=5)
+        self.__question_list.addWidget(new_form)
         pass
 
     def show_result(self, fact_id, text):
