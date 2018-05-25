@@ -58,11 +58,10 @@ class BFSOutputMechanism(QObject):
             # TODO: array of activated rules id (need id for rules, check Mongo)
             consequent = rule.successor.id
             is_intermediate = self.__is_intermediate_consequent(consequent)
-            if not is_intermediate:
-                self.__push_result(consequent)
-                continue
-            self.fact_queue.put(consequent)
-            self.working_memory.set_value_by_id(consequent, rule.successor.coefficient)
+            if is_intermediate:
+                self.fact_queue.put(consequent)
+                self.working_memory.set_value_by_id(consequent, rule.successor.coefficient)
+            self.__push_result(consequent)
         pass
 
     def __is_satisfied(self, predecessors):

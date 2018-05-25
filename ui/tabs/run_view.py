@@ -4,6 +4,7 @@ from PyQt5.QtGui import QFont
 
 from ui.tabs.forms.question_form import QuestionFormFixed, QuestionFormSlider
 from ui.tabs.forms.result_form import ResultView
+from ui.tabs.forms.separator import LineSeparator
 
 
 class RunView(QWidget):
@@ -52,6 +53,7 @@ class RunView(QWidget):
         hbox_layout.addLayout(vbox_question)
         hbox_layout.addLayout(vbox_result)
         self.__layout.addWidget(self.__run_button, alignment=Qt.AlignCenter)
+        self.__layout.addWidget(LineSeparator(self))
         self.__layout.addLayout(hbox_layout)
 
         self.setLayout(self.__layout)
