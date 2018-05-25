@@ -86,12 +86,13 @@ class MongoKnowledgeBase:
         for node in graph:
             if graph.in_degree(node) == 0:  # root
                 self.root_facts.append(node)
-            if graph.out_degree(node) == 0:  # leaf
+            if graph.node[node]['type'] == 'c':  # leaf
                 consequent_list.append(node)
 
             self.__facts.insert_one(self.transform_node_to_fact(node, graph))
             pass
 
+        print("Consequents count:", len(consequent_list))
         for rule in self.transform_to_rules(consequent_list, graph):
             self.__rules.insert_one(rule)
             pass
@@ -113,14 +114,14 @@ class MongoKnowledgeBase:
 
     def transform_node_to_fact(self, node, graph):
         attributes = graph.node[node]
-        out = list()
+        out = set()
         for edge in graph.out_edges(node):
-            out.append(graph.edges[edge]['weight'])
+            out.add(graph.edges[edge]['weight'])
         fact = {
             "id": node,
             "type": attributes['type'],
             "text": attributes['text'],
-            "out": out
+            "out": list(out)
         }
         if attributes['type'] == 'c':
             if graph.out_degree(node) != 0:

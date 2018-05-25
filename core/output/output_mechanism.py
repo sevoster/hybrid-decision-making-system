@@ -44,7 +44,6 @@ class BFSOutputMechanism(QObject):
     def start(self):
         self.__clean()
         for root in self.knowledge.root_facts:
-            self.fact_queue.put(root)
             self.__push_new_question(root)
             pass
         pass
