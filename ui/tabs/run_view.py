@@ -1,4 +1,4 @@
-from PyQt5.QtCore import Qt, pyqtSlot
+from PyQt5.QtCore import Qt, pyqtSlot, pyqtSignal
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QPushButton, QScrollArea, QHBoxLayout, QLabel
 from PyQt5.QtGui import QFont
 
@@ -8,7 +8,9 @@ from ui.tabs.forms.separator import LineSeparator
 
 
 class RunView(QWidget):
-    # TODO: please refactor
+    explanation_requested = pyqtSignal()
+
+    # TODO: please refactor ASAP
     def __init__(self, parent=None):
         super(QWidget, self).__init__(parent)
 
@@ -16,6 +18,10 @@ class RunView(QWidget):
 
         self.__run_button = QPushButton("Run")
         self.__run_button.setShortcut("F5")
+
+        self.__explanation_button = QPushButton("Explain")
+        self.__explanation_button.setShortcut("F12")
+        self.__explanation_button.clicked.connect(self.explanation_requested)
 
         self.__question_list = QVBoxLayout()
         self.__question_list = QVBoxLayout()
@@ -52,14 +58,34 @@ class RunView(QWidget):
         hbox_layout = QHBoxLayout()
         hbox_layout.addLayout(vbox_question)
         hbox_layout.addLayout(vbox_result)
-        self.__layout.addWidget(self.__run_button, alignment=Qt.AlignCenter)
+
+        self.__explanation_list = QVBoxLayout()
+        self.__explanation_list.setSpacing(10)
+
+        explanation_scroll_area = QScrollArea(self)
+        explanation_scroll_area.setWidgetResizable(True)
+
+        explanation_scroll_widget = QWidget(explanation_scroll_area)
+        explanation_scroll_widget.setLayout(self.__explanation_list)
+        explanation_scroll_area.setWidget(explanation_scroll_widget)
+
+        main_vbox = QVBoxLayout()
+        main_vbox.addLayout(hbox_layout)
+        main_vbox.addWidget(explanation_scroll_area)
+
+        button_group = QHBoxLayout()
+        button_group.addWidget(self.__run_button, alignment=Qt.AlignCenter)
+        button_group.addWidget(self.__explanation_button, alignment=Qt.AlignCenter)
+
+        self.__layout.addLayout(button_group)
         self.__layout.addWidget(LineSeparator(self))
-        self.__layout.addLayout(hbox_layout)
+        self.__layout.addLayout(main_vbox)
 
         self.setLayout(self.__layout)
         pass
 
     def connect_run_button(self, callback):
+        self.__run_button.clicked.connect(self.clean)
         self.__run_button.clicked.connect(callback)
         pass
 
@@ -93,6 +119,14 @@ class RunView(QWidget):
         self.__result_list.addWidget(result_form)
         pass
 
+    def show_explanation(self, explanation_list):
+        self.__clean_vertical_layout(self.__explanation_list)
+        for text in explanation_list:
+            label = QLabel(text)
+            label.setFont(QFont('SanSerif', 11))
+            self.__explanation_list.addWidget(label, alignment=Qt.AlignLeft)
+        pass
+
     def __clean_vertical_layout(self, vbox_layout):
         for i in reversed(range(vbox_layout.count())):
             widget = vbox_layout.takeAt(i).widget()
@@ -105,4 +139,5 @@ class RunView(QWidget):
     def clean(self):
         self.__clean_vertical_layout(self.__result_list)
         self.__clean_vertical_layout(self.__question_list)
+        self.__clean_vertical_layout(self.__explanation_list)
         pass

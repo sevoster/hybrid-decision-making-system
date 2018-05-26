@@ -31,6 +31,7 @@ class ProductionRule:
     def __init__(self, data):
         if PREDECESSORS_STRING not in data or SUCCESSOR_STRING not in data:
             raise Exception("Wrong data format for production rule")
+        self.id = data[ID_STRING]
         self.predecessors = [self.Predecessor(predecessor_data[ID_STRING], predecessor_data[COEFFICIENT_STRING])
                              for predecessor_data in data[PREDECESSORS_STRING]]
         self.successor = self.Successor(data[SUCCESSOR_STRING][ID_STRING], data[SUCCESSOR_STRING][COEFFICIENT_STRING])
@@ -112,6 +113,9 @@ class MongoKnowledgeBase:
     def get_fact_by_id(self, fact_id):
         return self.__facts.find_one({ID_STRING: fact_id}, {"_id": 0})
 
+    def get_rule_by_id(self, rule_id):
+        return ProductionRule(self.__rules.find_one({ID_STRING: rule_id}, {"_id": 0}))
+
     def get_text_description(self, fact_id):
         return self.get_fact_by_id(fact_id)['text']
 
@@ -163,11 +167,15 @@ class MongoKnowledgeBase:
         if len(self.root_facts) == 0:
             print("Can not add rules: No root elements")
             return
+        rule_id = 0
         for root in self.root_facts:
             for consequent in consequent_list:
                 paths = algorithms.all_simple_paths(graph, root, consequent)
                 for path in paths:
-                    yield self.convert_path_to_rule(path, graph)
+                    rule = self.convert_path_to_rule(path, graph)
+                    rule[ID_STRING] = rule_id
+                    rule_id += 1
+                    yield rule
                 pass
             pass
         pass

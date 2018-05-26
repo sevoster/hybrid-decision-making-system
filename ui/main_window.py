@@ -20,6 +20,9 @@ class MainWindow(QMainWindow):
         self.decision_system = DecisionSystem()
         self.tab_view = TabView(self)
 
+        self.tab_view.explanation_requested.connect(self.decision_system.get_explanation)
+        self.decision_system.explanation_deliver.connect(self.tab_view.show_explanation)
+
         self.tab_view.run_tab.connect_run_button(self.decision_system.start_output)
         self.decision_system.connect_to_user_interface(self.tab_view.run_tab.add_question_with_answers, self.tab_view.run_tab.show_result)
 

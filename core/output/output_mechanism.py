@@ -1,6 +1,7 @@
 from queue import Queue
-
 from PyQt5.QtCore import pyqtSignal, QObject
+
+from core.knowledge.knowledge_base import FactType
 
 
 class BFSOutputMechanism(QObject):
@@ -13,7 +14,7 @@ class BFSOutputMechanism(QObject):
     def __init__(self, working_memory, knowledge):
         super().__init__()
         self.fact_queue = Queue()
-        self.used = list()
+        self.triggered_rules = list()
         self.pushed = list()
         self.working_memory = working_memory
         self.knowledge = knowledge
@@ -38,7 +39,7 @@ class BFSOutputMechanism(QObject):
     def __clean(self):
         self.pushed = list()
         self.fact_queue = Queue()
-        self.used = list()
+        self.triggered_rules = list()
         pass
 
     def start(self):
@@ -56,7 +57,8 @@ class BFSOutputMechanism(QObject):
                 satisfied = self.__is_satisfied(rule.predecessors)
                 if not satisfied:
                     continue
-                # TODO: array of activated rules id (need id for rules, check Mongo)
+                self.triggered_rules.append(rule.id)
+
                 consequent = rule.successor.id
                 is_intermediate = self.__is_intermediate_consequent(consequent)
                 if is_intermediate:
@@ -78,8 +80,7 @@ class BFSOutputMechanism(QObject):
         return True
 
     def __is_intermediate_consequent(self, consequent_id):
-        # TODO: check for it automatically?
-        return self.knowledge.get_fact_by_id(consequent_id)['type'] == 'ic'  # hardcoded now, need types!
+        return self.knowledge.get_type(consequent_id) == FactType.IntermediateConsequent
 
     def process_answer(self, fact_id, value):
         print("Get answer for {}: {}".format(fact_id, value))

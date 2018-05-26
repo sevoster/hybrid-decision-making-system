@@ -1,12 +1,14 @@
 from os import path, makedirs
 import json
+from PyQt5.QtCore import pyqtSignal, QObject
 
 from core.knowledge.knowledge_base import MongoKnowledgeBase
 from core.output.output_mechanism import BFSOutputMechanism
 from core.working_memory.working_memory_handler import WorkingMemoryHandler
+from core.explanation.explanation_mechanism import ExplanationMechanism
 
 
-class DecisionSystem:
+class DecisionSystem(QObject):
     """
     Represents the main core component which aggregates others
     """
@@ -19,13 +21,16 @@ class DecisionSystem:
 
     CONFIG_PATH = "./config/settings.json"
 
+    explanation_deliver = pyqtSignal(list)
+
     def __init__(self):
+        super().__init__()
         self.settings = self.__read_or_create_config()
         self.knowledge_base = MongoKnowledgeBase()
         self.knowledge_base.connect(self.settings['database'], self.settings['mongo_url'], self.settings['mongo_port'])
         self.working_memory = WorkingMemoryHandler(self.knowledge_base)
         self.output_mechanism = BFSOutputMechanism(self.working_memory, self.knowledge_base)
-        pass
+        self.explanation = ExplanationMechanism(self.knowledge_base, self.working_memory)
 
     # TODO: Bad architecture is here
     def connect_to_user_interface(self, add_question, on_result):
@@ -58,3 +63,6 @@ class DecisionSystem:
         self.working_memory.init_from_base()
         self.output_mechanism.start()
         pass
+
+    def get_explanation(self):
+        self.explanation_deliver.emit(self.explanation.get_explanation(self.output_mechanism.triggered_rules))
