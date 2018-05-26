@@ -1,29 +1,18 @@
-from PyQt5.QtCore import Qt, pyqtSlot, pyqtSignal
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QPushButton, QScrollArea, QHBoxLayout, QLabel
+from PyQt5.QtCore import Qt, pyqtSlot
 from PyQt5.QtGui import QFont
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QScrollArea, QLabel, QSizePolicy, QSplitter, QAction
 
-from ui.tabs.forms.question_form import QuestionFormFixed, QuestionFormSlider
-from ui.tabs.forms.result_form import ResultView
-from ui.tabs.forms.separator import LineSeparator
+from ui.forms.question_form import QuestionFormFixed, QuestionFormSlider
+from ui.forms.result_form import ResultView
 
 
 class RunView(QWidget):
-    explanation_requested = pyqtSignal()
 
-    # TODO: please refactor ASAP
+    # TODO: please refactor ASAP!
     def __init__(self, parent=None):
         super(QWidget, self).__init__(parent)
-
         self.__layout = QVBoxLayout()
 
-        self.__run_button = QPushButton("Run")
-        self.__run_button.setShortcut("F5")
-
-        self.__explanation_button = QPushButton("Explain")
-        self.__explanation_button.setShortcut("F12")
-        self.__explanation_button.clicked.connect(self.explanation_requested)
-
-        self.__question_list = QVBoxLayout()
         self.__question_list = QVBoxLayout()
         self.__result_list = QVBoxLayout()
 
@@ -55,38 +44,33 @@ class RunView(QWidget):
         vbox_result.addWidget(result_label, alignment=Qt.AlignCenter)
         vbox_result.addWidget(result_scroll_area)
 
-        hbox_layout = QHBoxLayout()
-        hbox_layout.addLayout(vbox_question)
-        hbox_layout.addLayout(vbox_result)
+        hbox_layout = QSplitter()
+        qu_widget = QWidget(self)
+        qu_widget.setLayout(vbox_question)
+        re_widget = QWidget(self)
+        re_widget.setLayout(vbox_result)
+        hbox_layout.addWidget(qu_widget)
+        hbox_layout.addWidget(re_widget)
 
         self.__explanation_list = QVBoxLayout()
         self.__explanation_list.setSpacing(10)
 
-        explanation_scroll_area = QScrollArea(self)
-        explanation_scroll_area.setWidgetResizable(True)
+        self.explanation_scroll_area = QScrollArea(self)
+        self.explanation_scroll_area.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        self.explanation_scroll_area.setWidgetResizable(True)
+        self.explanation_scroll_area.setVisible(False)
 
-        explanation_scroll_widget = QWidget(explanation_scroll_area)
+        explanation_scroll_widget = QWidget(self.explanation_scroll_area)
         explanation_scroll_widget.setLayout(self.__explanation_list)
-        explanation_scroll_area.setWidget(explanation_scroll_widget)
+        self.explanation_scroll_area.setWidget(explanation_scroll_widget)
 
-        main_vbox = QVBoxLayout()
-        main_vbox.addLayout(hbox_layout)
-        main_vbox.addWidget(explanation_scroll_area)
+        main_vbox = QSplitter(Qt.Vertical)
+        main_vbox.addWidget(hbox_layout)
+        main_vbox.addWidget(self.explanation_scroll_area)
 
-        button_group = QHBoxLayout()
-        button_group.addWidget(self.__run_button, alignment=Qt.AlignCenter)
-        button_group.addWidget(self.__explanation_button, alignment=Qt.AlignCenter)
-
-        self.__layout.addLayout(button_group)
-        self.__layout.addWidget(LineSeparator(self))
-        self.__layout.addLayout(main_vbox)
+        self.__layout.addWidget(main_vbox)
 
         self.setLayout(self.__layout)
-        pass
-
-    def connect_run_button(self, callback):
-        self.__run_button.clicked.connect(self.clean)
-        self.__run_button.clicked.connect(callback)
         pass
 
     @pyqtSlot(QWidget)
@@ -109,18 +93,25 @@ class RunView(QWidget):
 
     def add_question_with_answers(self, fact_id, text, answers, callback=None):
         new_form = QuestionFormFixed(fact_id, text, answers, callback)
+        new_form.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Maximum)
         new_form.finished.connect(self.remove_question)
-        self.__question_list.addWidget(new_form)
+        self.__question_list.addWidget(new_form, alignment=Qt.AlignTop)
         pass
 
     def show_result(self, fact_id, text):
         result_form = ResultView(fact_id, text)
+        result_form.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Maximum)
         result_form.finished.connect(self.remove_result)
-        self.__result_list.addWidget(result_form)
+        self.__result_list.addWidget(result_form, alignment=Qt.AlignTop)
+        pass
+
+    def set_explanation_visible(self, value):
+        self.explanation_scroll_area.setVisible(value)
         pass
 
     def show_explanation(self, explanation_list):
         self.__clean_vertical_layout(self.__explanation_list)
+        self.set_explanation_visible(True)
         for text in explanation_list:
             label = QLabel(text)
             label.setFont(QFont('SanSerif', 11))
@@ -137,6 +128,7 @@ class RunView(QWidget):
         pass
 
     def clean(self):
+        self.set_explanation_visible(False)
         self.__clean_vertical_layout(self.__result_list)
         self.__clean_vertical_layout(self.__question_list)
         self.__clean_vertical_layout(self.__explanation_list)

@@ -20,14 +20,11 @@ class MainWindow(QMainWindow):
         self.decision_system = DecisionSystem()
         self.tab_view = TabView(self)
 
-        self.tab_view.explanation_requested.connect(self.decision_system.get_explanation)
         self.decision_system.explanation_deliver.connect(self.tab_view.show_explanation)
 
-        self.tab_view.run_tab.connect_run_button(self.decision_system.start_output)
         self.decision_system.connect_to_user_interface(self.tab_view.run_tab.add_question_with_answers, self.tab_view.run_tab.show_result)
 
         self.setup_ui()
-
         pass
 
     def setup_ui(self):
@@ -61,6 +58,25 @@ class MainWindow(QMainWindow):
 
         file_menu.addAction(import_action)
         file_menu.addAction(exit_action)
+
+        # Action menu
+        action_menu = menu_bar.addMenu('&Action')
+
+        # Run menu
+        run_action = QAction('&Run', self)
+        run_action.setShortcut('Ctrl+R')
+        run_action.setStatusTip('Run solver')
+        run_action.triggered
+        run_action.triggered.connect(self.run_solver)
+
+        # Explain menu
+        explain_action = QAction('&Explain', self)
+        explain_action.setShortcut('Ctrl+E')
+        explain_action.setStatusTip('Show explanation')
+        explain_action.triggered.connect(self.decision_system.get_explanation)
+
+        action_menu.addAction(run_action)
+        action_menu.addAction(explain_action)
         pass
 
     def show_message(self, content, msg_type):
@@ -68,22 +84,21 @@ class MainWindow(QMainWindow):
             QMessageBox.critical(self, 'Error', content)
         pass
 
+    def run_solver(self):
+        self.tab_view.clean()
+        self.decision_system.start_output()
+        pass
+
     def status_bar_message(self, text):
         self.statusBar().showMessage(text)
         pass
 
-    # Only one json format is supported
-    # TODO: move logic in parsers
-    def import_file(self):
-        file_name = QFileDialog.getOpenFileName(self, 'Import decision tree file', filter="JSON files (*.json)")[0]
-        if not file_name:
+    def import_from_path(self, file_path):
+        if not os.path.isfile(file_path):
+            self.show_message('File does not exist: ' + file_path, self.MessageType.Error)
             return
 
-        if not os.path.isfile(file_name):
-            self.show_message('File does not exist: ' + file_name, self.MessageType.Error)
-            return
-
-        with open(file_name, 'r', encoding='utf-8') as f:
+        with open(file_path, 'r', encoding='utf-8') as f:
             try:
                 json_content = json.load(f)
             except json.JSONDecodeError as e:
@@ -96,3 +111,14 @@ class MainWindow(QMainWindow):
 
         self.status_bar_message("SUCCESS: Import decision graph")
         pass
+
+    # Only one json format is supported
+    # TODO: move logic in parsers
+    def import_file(self):
+        file_path = QFileDialog.getOpenFileName(self, 'Import decision tree file', filter="JSON files (*.json)")[0]
+        if not file_path:
+            return
+        self.import_from_path(file_path)
+        pass
+
+

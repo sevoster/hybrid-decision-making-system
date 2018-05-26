@@ -1,9 +1,9 @@
 from PyQt5.QtCore import Qt, pyqtSignal, pyqtSlot
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QPushButton, QSlider, QFrame, QButtonGroup, \
-    QAbstractButton, QTextEdit, QSizePolicy
+from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QPushButton, QSlider, QButtonGroup, \
+    QAbstractButton, QTextEdit, QHBoxLayout
 
-from ui.tabs.forms.separator import LineSeparator
+from ui.forms.separator import LineSeparator
 
 
 class QuestionFormFixed(QWidget):
@@ -19,19 +19,25 @@ class QuestionFormFixed(QWidget):
 
         text_label = QLabel(text)
         text_label.setFont(QFont('Times', 12))
-        text_label.setWordWrap(True)
+        # text_label.setWordWrap(True)  # TODO: wrap works bad with scroll area/ vertical layout
 
         button_group = QButtonGroup(self)
         button_group.buttonClicked['QAbstractButton *'].connect(self.on_clicked)
 
         self.__layout.addWidget(LineSeparator(self))
+        self.__layout.addSpacing(10)
         self.__layout.addWidget(text_label, alignment=Qt.AlignCenter)
+        self.__layout.addSpacing(50)
 
-        for answer in answers:
+        button_layout = QHBoxLayout()
+
+        for answer in sorted(answers):
             button = QPushButton(str(answer))
             button_group.addButton(button)
-            self.__layout.addWidget(button, alignment=Qt.AlignCenter)
+            button_layout.addWidget(button, alignment=Qt.AlignCenter)
             pass
+        self.__layout.addLayout(button_layout)
+        self.__layout.addSpacing(10)
         self.__layout.addWidget(LineSeparator(self))
         self.setLayout(self.__layout)
         pass

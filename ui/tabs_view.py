@@ -1,5 +1,4 @@
 from PyQt5.QtWidgets import QWidget, QTabWidget, QVBoxLayout
-from PyQt5.QtCore import pyqtSignal
 
 from ui.tabs.decision_graph_view import DecisionGraphView
 from ui.tabs.run_view import RunView
@@ -7,7 +6,6 @@ from ui.tabs.statistics_view import StatisticView
 
 
 class TabView(QWidget):
-    explanation_requested = pyqtSignal()
 
     def __init__(self, parent):
         super(QWidget, self).__init__(parent)
@@ -19,8 +17,6 @@ class TabView(QWidget):
         self.decision_tree_tab = DecisionGraphView()
         self.run_tab = RunView()
         self.statistics_tab = StatisticView()
-
-        self.run_tab.explanation_requested.connect(self.explanation_requested)
 
         # Add tabs
         # self.tabs.addTab(self.decision_tree_tab, "Decision Tree")
