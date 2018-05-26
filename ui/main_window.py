@@ -65,6 +65,10 @@ class MainWindow(QMainWindow):
             QMessageBox.critical(self, 'Error', content)
         pass
 
+    def status_bar_message(self, text):
+        self.statusBar().showMessage(text)
+        pass
+
     # Only one json format is supported
     # TODO: move logic in parsers
     def import_file(self):
@@ -84,5 +88,8 @@ class MainWindow(QMainWindow):
                 return
 
         self.decision_system.apply_decision_graph(json_content)
+        self.tab_view.clean()
         self.tab_view.display_expert_knowledge(json_content)
+
+        self.status_bar_message("SUCCESS: Import decision graph")
         pass

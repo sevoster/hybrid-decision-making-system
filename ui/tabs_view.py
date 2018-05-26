@@ -31,3 +31,7 @@ class TabView(QWidget):
     def display_expert_knowledge(self, decision_graph):
         self.decision_tree_tab.display(decision_graph)
         pass
+
+    def clean(self):
+        self.run_tab.clean()
+        pass

@@ -92,3 +92,17 @@ class RunView(QWidget):
         result_form.finished.connect(self.remove_result)
         self.__result_list.addWidget(result_form)
         pass
+
+    def __clean_vertical_layout(self, vbox_layout):
+        for i in reversed(range(vbox_layout.count())):
+            widget = vbox_layout.takeAt(i).widget()
+            if widget is not None:
+                vbox_layout.removeWidget(widget)
+                widget.deleteLater()
+            pass
+        pass
+
+    def clean(self):
+        self.__clean_vertical_layout(self.__result_list)
+        self.__clean_vertical_layout(self.__question_list)
+        pass
