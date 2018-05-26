@@ -109,7 +109,7 @@ class MainWindow(QMainWindow):
         self.tab_view.clean()
         self.tab_view.display_expert_knowledge(json_content)
 
-        self.status_bar_message("SUCCESS: Import decision graph")
+        self.status_bar_message("SUCCESS: Import file {}".format(os.path.basename(file_path)))
         pass
 
     # Only one json format is supported
