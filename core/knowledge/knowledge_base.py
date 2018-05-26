@@ -9,6 +9,12 @@ ID_STRING = "id"
 COEFFICIENT_STRING = "coefficient"
 
 
+class FactType:
+    Antecedent = "a"
+    Consequent = "c"
+    IntermediateConsequent = "ic"
+
+
 class ProductionRule:
     class Predecessor:
         def __init__(self, predecessor_id, coefficient):
@@ -86,7 +92,7 @@ class MongoKnowledgeBase:
         for node in graph:
             if graph.in_degree(node) == 0:  # root
                 self.root_facts.append(node)
-            if graph.node[node]['type'] == 'c':  # leaf
+            if graph.node[node]['type'] == FactType.Consequent:  # consequent
                 consequent_list.append(node)
 
             self.__facts.insert_one(self.transform_node_to_fact(node, graph))
@@ -101,13 +107,16 @@ class MongoKnowledgeBase:
     # TODO: handle intermediate consequents
     # TODO: add types and classes for facts (ant, con, incon)
     def find_antecedents(self):
-        return self.__facts.distinct(ID_STRING, {'type': {"$in": ['a', 'ic']}})
+        return self.__facts.distinct(ID_STRING, {'type': {"$in": [FactType.Antecedent, FactType.IntermediateConsequent]}})
 
     def get_fact_by_id(self, fact_id):
         return self.__facts.find_one({ID_STRING: fact_id}, {"_id": 0})
 
     def get_text_description(self, fact_id):
         return self.get_fact_by_id(fact_id)['text']
+
+    def get_type(self, fact_id):
+        return self.get_fact_by_id(fact_id)['type']
 
     def get_rules_with_predecessor(self, fact_id):
         return [ProductionRule(x) for x in self.__rules.find({PREDECESSORS_STRING: {'$elemMatch': {ID_STRING: fact_id}}}, {"_id": 0})]
@@ -123,11 +132,32 @@ class MongoKnowledgeBase:
             "text": attributes['text'],
             "out": list(out)
         }
-        if attributes['type'] == 'c':
+        if attributes['type'] == FactType.Consequent:
             if graph.out_degree(node) != 0:
-                fact['type'] = 'ic'
+                fact['type'] = FactType.IntermediateConsequent
             fact['coefficient'] = attributes['coefficient']
         return fact
+
+    def fix_path_from_intermediate_consequent(self, path):
+        last_intermediate_consequent = next((i for i in reversed(path[:-1]) if self.get_type(i) == FactType.IntermediateConsequent), None)
+        if last_intermediate_consequent is not None:
+            path = path[path.index(last_intermediate_consequent):]
+        return path
+
+    def convert_path_to_rule(self, path, graph):
+        path = self.fix_path_from_intermediate_consequent(path)
+        consequent_id = path[-1]
+        rule = {
+            PREDECESSORS_STRING: [],
+            SUCCESSOR_STRING: {ID_STRING: consequent_id,
+                               COEFFICIENT_STRING: graph.node[consequent_id][COEFFICIENT_STRING]}
+        }
+
+        for i in range(len(path) - 1):
+            rule[PREDECESSORS_STRING].append({ID_STRING: path[i],
+                                              COEFFICIENT_STRING: graph.get_edge_data(path[i], path[i + 1])[
+                                                  'weight']})
+        return rule
 
     def transform_to_rules(self, consequent_list, graph):
         if len(self.root_facts) == 0:
@@ -136,21 +166,8 @@ class MongoKnowledgeBase:
         for root in self.root_facts:
             for consequent in consequent_list:
                 paths = algorithms.all_simple_paths(graph, root, consequent)
-
                 for path in paths:
-                    consequent_id = path[-1]
-                    rule = {
-                        PREDECESSORS_STRING: [],
-                        SUCCESSOR_STRING: {ID_STRING: consequent_id,
-                                           COEFFICIENT_STRING: graph.node[consequent_id][COEFFICIENT_STRING]}
-                    }
-
-                    for i in range(len(path) - 1):
-                        rule[PREDECESSORS_STRING].append({ID_STRING: path[i],
-                                                          COEFFICIENT_STRING: graph.get_edge_data(path[i], path[i + 1])[
-                                                              'weight']})
-                    yield rule
-                    pass
+                    yield self.convert_path_to_rule(path, graph)
                 pass
             pass
         pass

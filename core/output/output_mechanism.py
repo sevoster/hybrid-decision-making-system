@@ -49,19 +49,21 @@ class BFSOutputMechanism(QObject):
         pass
 
     def main_cycle(self):
-        next_fact_id = self.fact_queue.get()
-        rules = self.knowledge.get_rules_with_predecessor(next_fact_id)
-        for rule in rules:
-            satisfied = self.__is_satisfied(rule.predecessors)
-            if not satisfied:
-                continue
-            # TODO: array of activated rules id (need id for rules, check Mongo)
-            consequent = rule.successor.id
-            is_intermediate = self.__is_intermediate_consequent(consequent)
-            if is_intermediate:
-                self.fact_queue.put(consequent)
-                self.working_memory.set_value_by_id(consequent, rule.successor.coefficient)
-            self.__push_result(consequent)
+        while not self.fact_queue.empty():
+            next_fact_id = self.fact_queue.get()
+            rules = self.knowledge.get_rules_with_predecessor(next_fact_id)
+            for rule in rules:
+                satisfied = self.__is_satisfied(rule.predecessors)
+                if not satisfied:
+                    continue
+                # TODO: array of activated rules id (need id for rules, check Mongo)
+                consequent = rule.successor.id
+                is_intermediate = self.__is_intermediate_consequent(consequent)
+                if is_intermediate:
+                    self.fact_queue.put(consequent)
+                    self.working_memory.set_value_by_id(consequent, rule.successor.coefficient)
+                self.__push_result(consequent)
+            pass
         pass
 
     def __is_satisfied(self, predecessors):

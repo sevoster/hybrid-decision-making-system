@@ -5,6 +5,8 @@ import xml.etree.ElementTree as etree
 from PyQt5.QtWidgets import (QWidget, QFileDialog, QPushButton, QApplication, QLabel, QVBoxLayout)
 from PyQt5.QtCore import Qt
 
+from core.knowledge.knowledge_base import FactType
+
 
 # TODO: should be converter, not parser
 class Parser(QWidget):
@@ -56,14 +58,14 @@ class Parser(QWidget):
                 if str(cell.attrib['style']).find('ellipse') != -1:
                     json["nodes"].append({
                         "text": cell.attrib['value'],
-                        "type": "a",
+                        "type": FactType.Antecedent,
                         "id": int(cell.attrib['id'])
                     })
                 elif str(cell.attrib['style']).find('rounded=0') != -1:
                     coef = cell.attrib['value'][0:len(cell.attrib['value']) - 1].partition('(')[2]
                     json["nodes"].append({
                         "text": cell.attrib['value'],
-                        "type": "c",
+                        "type": FactType.Consequent,
                         "id": int(cell.attrib['id']),
                         "coefficient": float(coef)
                     })
