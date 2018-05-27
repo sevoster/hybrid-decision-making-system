@@ -30,7 +30,7 @@ class ExplanationMechanism:
                 value = self.working_memory.get_value_by_id(predecessor.id)
                 fact_type = self.knowledge_base.get_type(predecessor.id)
                 if fact_type == FactType.Antecedent:
-                    text = "Q: {}; A: {}".format(text, self.__convert_to_human_answer(value))
+                    text = "Q: {}; A: {} ({})".format(text, self.__convert_to_human_answer(value), value)
                 else:
                     text = "C: {}".format(text)
                 logic_string += text + " -> "

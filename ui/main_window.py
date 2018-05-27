@@ -107,7 +107,7 @@ class MainWindow(QMainWindow):
 
         self.decision_system.apply_decision_graph(json_content)
         self.tab_view.clean()
-        self.tab_view.display_expert_knowledge(json_content)
+        # self.tab_view.display_expert_knowledge(json_content)
 
         self.status_bar_message("SUCCESS: Import file {}".format(os.path.basename(file_path)))
         pass
