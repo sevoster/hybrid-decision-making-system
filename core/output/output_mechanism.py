@@ -64,7 +64,8 @@ class BFSOutputMechanism(QObject):
                 if is_intermediate:
                     self.fact_queue.put(consequent)
                     self.working_memory.set_value_by_id(consequent, rule.successor.coefficient)
-                self.__push_result(consequent)
+                else:
+                    self.__push_result(consequent)
             pass
         pass
 
@@ -86,5 +87,6 @@ class BFSOutputMechanism(QObject):
         print("Get answer for {}: {}".format(fact_id, value))
         self.working_memory.set_value_by_id(fact_id, value)
         self.fact_queue.put(fact_id)
+        self.pushed.remove(fact_id)
         self.main_cycle()
         pass

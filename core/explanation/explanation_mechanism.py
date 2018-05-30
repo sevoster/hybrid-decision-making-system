@@ -9,15 +9,15 @@ class ExplanationMechanism:
 
     def __convert_to_human_answer(self, value):
         if value >= 0.9:
-            return "Yes"
+            return "Да"
         elif value >= 0.67:
-            return "Almost yes"
+            return "Возможно"
         elif value >= 0.45:
-            return "Don't know"
+            return "Не знаю"
         elif value >= 0.1:
-            return "Almost no"
+            return "Скорее нет"
         else:
-            return "No"
+            return "Нет"
 
     # TODO: concatenate by intermediate consequent
     def get_explanation(self, rule_sequence):
@@ -30,7 +30,7 @@ class ExplanationMechanism:
                 value = self.working_memory.get_value_by_id(predecessor.id)
                 fact_type = self.knowledge_base.get_type(predecessor.id)
                 if fact_type == FactType.Antecedent:
-                    text = "Q: {}; A: {} ({})".format(text, self.__convert_to_human_answer(value), value)
+                    text = "Q: {}; A: {} ({})".format(text, value, self.__convert_to_human_answer(value))
                 else:
                     text = "C: {}".format(text)
                 logic_string += text + " -> "
