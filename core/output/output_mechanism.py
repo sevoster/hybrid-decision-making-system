@@ -9,7 +9,7 @@ class BFSOutputMechanism(QObject):
     Represents core logic for analytic output
     """
     MAX_COEFFICIENT_DIFF = 0.6
-    ACCURACY = 0.001
+    DIFF_ERROR = 0.2
 
     new_question = pyqtSignal(int, str, 'PyQt_PyObject')
     result_found = pyqtSignal(int, str, float)
@@ -117,7 +117,7 @@ class BFSOutputMechanism(QObject):
                 continue
             coefficient = predecessor.coefficient
             diff = abs(coefficient - self.working_memory.get_value_by_id(fact_id))
-            if diff > self.user_to_expert_min_diff[fact_id] + self.ACCURACY or diff > self.MAX_COEFFICIENT_DIFF:
+            if diff > self.user_to_expert_min_diff[fact_id] + self.DIFF_ERROR or diff > self.MAX_COEFFICIENT_DIFF:
                 return False
         return True
 
