@@ -127,19 +127,15 @@ class MongoKnowledgeBase:
 
     def transform_node_to_fact(self, node, graph):
         attributes = graph.node[node]
-        out = set()
-        for edge in graph.out_edges(node):
-            out.add(graph.edges[edge]['weight'])
         fact = {
             "id": node,
             "type": attributes['type'],
-            "text": attributes['text'],
-            "out": list(out)
+            "text": attributes['text']
         }
         if attributes['type'] == FactType.Consequent:
             if graph.out_degree(node) != 0:
                 fact['type'] = FactType.IntermediateConsequent
-            fact['coefficient'] = attributes['coefficient']
+            fact['coefficient'] = float(attributes['coefficient'])
         return fact
 
     def fix_path_from_intermediate_consequent(self, path):
@@ -154,13 +150,13 @@ class MongoKnowledgeBase:
         rule = {
             PREDECESSORS_STRING: [],
             SUCCESSOR_STRING: {ID_STRING: consequent_id,
-                               COEFFICIENT_STRING: graph.node[consequent_id][COEFFICIENT_STRING]}
+                               COEFFICIENT_STRING: float(graph.node[consequent_id][COEFFICIENT_STRING])}
         }
 
         for i in range(len(path) - 1):
             rule[PREDECESSORS_STRING].append({ID_STRING: path[i],
-                                              COEFFICIENT_STRING: graph.get_edge_data(path[i], path[i + 1])[
-                                                  'weight']})
+                                              COEFFICIENT_STRING: float(graph.get_edge_data(path[i], path[i + 1])[
+                                                  'weight'])})
         return rule
 
     def transform_to_rules(self, consequent_list, graph):

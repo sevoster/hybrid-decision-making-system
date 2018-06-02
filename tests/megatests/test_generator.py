@@ -1,5 +1,6 @@
 from core.neural_network.neural_net.neural_net import NeuralNet
 from core.neural_network.builder.builder import Builder
+from core.decision_system import DecisionSystem
 import json
 import random
 
@@ -19,6 +20,31 @@ def generate_tests(number_of_tests):
         testfile.write(json.dumps(tests))
 
     # print(*tests, sep='\n')
+
+
+def generate_analytic_output():
+    with open('SimpleTest.json', 'r', encoding='utf-8') as f:
+        graph_data = json.load(f)
+        pass
+
+    with open('test', 'r') as file:
+        inputs = json.loads(file.read())
+        pass
+
+    outputs = list()
+
+    decision_system = DecisionSystem()
+    decision_system.apply_decision_graph(graph_data)
+
+    for input_data in inputs:
+        input_dict = {e[0]: e[1] for e in input_data}
+        output = list()
+        decision_system.connect_to_user_interface(lambda id, text, callback: callback(str(id), input_dict[str(id)]),
+                                                  lambda id, text, value: output.append((str(id), value)))
+        decision_system.start_output()
+        outputs.append(output)
+        pass
+    print(outputs)
 
 
 def generate_neural_outputs():
@@ -49,6 +75,7 @@ def generate_neural_outputs():
     with open('neural_output','w') as file:
         file.write(json.dumps(outputs))
 
+
 def generate_test_values(number_of_tests, graph_filename):
     builder = Builder()
     net = builder.build_net(builder.parse_json(''))
@@ -74,3 +101,4 @@ def generate_test_values(number_of_tests, graph_filename):
 
 generate_tests(7)
 generate_neural_outputs()
+generate_analytic_output()

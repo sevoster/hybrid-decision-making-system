@@ -87,8 +87,9 @@ class RunView(QWidget):
 
     def add_question(self, fact_id, text, callback=None):
         new_form = QuestionFormSlider(fact_id, text, callback)
+        new_form.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Maximum)
         new_form.finished.connect(self.remove_question)
-        self.__question_list.addWidget(new_form)
+        self.__question_list.addWidget(new_form, alignment=Qt.AlignTop)
         pass
 
     def add_question_with_answers(self, fact_id, text, answers, callback=None):

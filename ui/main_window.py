@@ -22,7 +22,7 @@ class MainWindow(QMainWindow):
 
         self.decision_system.explanation_deliver.connect(self.tab_view.show_explanation)
 
-        self.decision_system.connect_to_user_interface(self.tab_view.run_tab.add_question_with_answers, self.tab_view.run_tab.show_result)
+        self.decision_system.connect_to_user_interface(self.tab_view.run_tab.add_question, self.tab_view.run_tab.show_result)
 
         self.setup_ui()
         pass
