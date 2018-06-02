@@ -1,5 +1,6 @@
 from core.neural_network.neural_net.link import Link
 from math import e
+import copy
 
 
 class INeuron:
@@ -29,15 +30,16 @@ class INeuron:
 
 
 class Neuron(INeuron):
-    def __init__(self, id, text='', links=None, threshold=0.5, param_a=1, func=None, sensor_weigth = ''):
+    def __init__(self, id, text='', rule=None, links=None, threshold=0.5, param_a=3, func=None, sensor_weigth=''):
         self.links = links or []
         self.threshold = threshold
         self.param_a = param_a
         self.income = 0
         self.output = 0
         self.id = id
+        self.rule = rule
         self.text = text
-        self.func = func
+        self.func = copy.deepcopy(func)
         self.sensor_weight = sensor_weigth
         if not self.func:
             self.func = self.sigmoid
@@ -70,7 +72,7 @@ class Neuron(INeuron):
     def push_values_to_next_level(self):
         for link in self.links:
             if link.target:
-                link.target.increase_incoming_value(self.output * link.weight)
+                link.target.increase_incoming_value(self.output * float(link.weight))
         self.income = 0
         self.output = 0
 

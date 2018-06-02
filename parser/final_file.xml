@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel dx="5903" dy="3160" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1"
+              page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+    <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="32" value="0"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="34" target="63" parent="1">
+            <mxGeometry relative="1" as="geometry">
+                <mxPoint x="1844.00800020001" y="1439" as="targetPoint"/>
+            </mxGeometry>
+        </mxCell>
+        <mxCell id="33" value="1"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="34" target="39" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="34" value="Драйвер адаптера последней версии?"
+                style="ellipse;whiteSpace=wrap;html=1;fontSize=22;fontFamily=Calibri;" vertex="1" parent="1">
+            <mxGeometry x="1220" y="1200" width="320" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="35" value="1"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="36" target="34" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="36" value="Адаптер активен во вкладке &quot;Параметры подключения&quot;?"
+                style="ellipse;whiteSpace=wrap;html=1;fontSize=22;fontFamily=Calibri;" vertex="1" parent="1">
+            <mxGeometry x="537.5" y="1200" width="315" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="37" value="0"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=1;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="39" target="41" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="38" value="1"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=1;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="39" target="47" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="39" value="Используется адаптер Wi-Fi?"
+                style="ellipse;whiteSpace=wrap;html=1;fontSize=22;fontFamily=Calibri;" vertex="1" parent="1">
+            <mxGeometry x="1230" y="1520" width="320" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="40" value="1"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=1;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="41" target="55" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="41" value="Используется адаптер LAN?"
+                style="ellipse;whiteSpace=wrap;html=1;fontSize=22;fontFamily=Calibri;" vertex="1" parent="1">
+            <mxGeometry x="1570" y="1764.5" width="320" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="42" value="0"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=1;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="44" target="36" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="43" value="1"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="44" target="64" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="44" value="Режим &quot;в самолете&quot; активен?"
+                style="ellipse;whiteSpace=wrap;html=1;fontSize=22;fontFamily=Calibri;" vertex="1" parent="1">
+            <mxGeometry x="790" y="750" width="320" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="45" value="1"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=1;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="47" target="65" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="46" value="0"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="47" target="80" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="47" value="Точка доступа находится на расстоянии более 100 метров?"
+                style="ellipse;whiteSpace=wrap;html=1;fontSize=22;fontFamily=Calibri;" vertex="1" parent="1">
+            <mxGeometry x="790" y="1860" width="320" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="48" value="0" style="endArrow=block;endSize=16;endFill=0;html=1;fontSize=33;" edge="1" source="36"
+                target="49" parent="1">
+            <mxGeometry width="160" relative="1" as="geometry">
+                <mxPoint x="-110" y="2160" as="sourcePoint"/>
+                <mxPoint x="50" y="2160" as="targetPoint"/>
+            </mxGeometry>
+        </mxCell>
+        <mxCell id="49"
+                value="&lt;p style=&quot;font-size: 22px&quot;&gt;Включить адаптер во вкладке &quot;Параметры подключения&quot; (1)&lt;/p&gt;"
+                style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="550" y="1660" width="290" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="50" value="1"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="70" target="62" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="51" value="1"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="69" target="58" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="52" value="0"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="70" target="66" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="53" value="1"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="55" target="69" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="54" value="0"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="55" target="68" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="55" value="Светодиод сетевого адаптера мигает?"
+                style="ellipse;whiteSpace=wrap;html=1;fontSize=22;fontFamily=Calibri;" vertex="1" parent="1">
+            <mxGeometry x="1245" y="2060" width="320" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="56" value="0"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=0;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="58" target="61" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="57" value="1"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="58" target="75" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="58" value="Используется DHCP?"
+                style="ellipse;whiteSpace=wrap;html=1;fontSize=22;fontFamily=Calibri;" vertex="1" parent="1">
+            <mxGeometry x="2100" y="1664.5" width="320" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="59" value="0"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="61" target="71" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="60" value="0.5"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="61" target="72" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="61" value="Настройка IP-адреса выполнена корректно?"
+                style="ellipse;whiteSpace=wrap;html=1;fontSize=22;fontFamily=Calibri;" vertex="1" parent="1">
+            <mxGeometry x="2417.5" y="1425" width="320" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="62"
+                value="&lt;p style=&quot;font-size: 22px&quot;&gt;Необходим ремонт\ замена адаптера LAN(0.4)&lt;/p&gt;"
+                style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="2385" y="2485" width="290" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="63" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Обновить драйвер адаптера (1)&lt;/p&gt;"
+                style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="1830" y="1225" width="290" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="64"
+                value="&lt;p style=&quot;font-size: 22px&quot;&gt;Выключить режим &quot;в самолете&quot; (1)&lt;/p&gt;"
+                style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="1405" y="850" width="290" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="65" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Приблизиться к точке доступа (0.9)&lt;/p&gt;"
+                style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="500" y="2180" width="290" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="66"
+                value="&lt;p style=&quot;font-size: 22px&quot;&gt;Необходим ремонт\замена материнской карты (0.7)&lt;/p&gt;"
+                style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="1810" y="2960" width="290" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="67" value="1"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="68" target="70" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="68" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Проверить аппаратную часть (1)&lt;/p&gt;"
+                style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="1230" y="2485" width="290" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="69"
+                value="&lt;p style=&quot;font-size: 22px&quot;&gt;Проблема в программной настройке (0.7)&lt;/p&gt;"
+                style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="1830" y="2085" width="290" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="70" value="Есть питание на сетевой плате?"
+                style="ellipse;whiteSpace=wrap;html=1;fontSize=22;fontFamily=Calibri;" vertex="1" parent="1">
+            <mxGeometry x="1780" y="2460" width="320" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="71"
+                value="&lt;p style=&quot;font-size: 22px&quot;&gt;Установить корректные значения адресов узла, шлюза, DNS-сервера (1)&lt;/p&gt;"
+                style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="2385" y="1125" width="290" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="72"
+                value="&lt;p style=&quot;font-size: 22px&quot;&gt;Проверить адрес сети, узла, шлюза и DNS-сервера, выполнить настройку(1)&lt;/p&gt;"
+                style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="2960" y="1350" width="290" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="73" value="0"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="75" target="76" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="74" value="1"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="75" target="77" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="75" value="DHCP-сервер работает корректно?"
+                style="ellipse;whiteSpace=wrap;html=1;fontSize=22;fontFamily=Calibri;" vertex="1" parent="1">
+            <mxGeometry x="2737.5" y="1830" width="320" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="76" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Настроить DHCP-сервер(1)&lt;/p&gt;"
+                style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="3150" y="1589.5" width="290" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="77"
+                value="&lt;p style=&quot;font-size: 22px&quot;&gt;Обратиться к провайдеру для устранения неполадок подключения с его стороны (0.9)&lt;/p&gt;"
+                style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="2860" y="2235" width="290" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="78" value="0.5"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="80" target="81" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="79" value="1"
+                style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=1;jettySize=auto;orthogonalLoop=1;fontSize=33;"
+                edge="1" source="80" target="82" parent="1">
+            <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="80" value="Есть источник помех Wi-Fi сигнала?"
+                style="ellipse;whiteSpace=wrap;html=1;fontSize=22;fontFamily=Calibri;" vertex="1" parent="1">
+            <mxGeometry x="900" y="2270" width="320" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="81"
+                value="&lt;p style=&quot;font-size: 22px&quot;&gt;Сменить частоту Wi-Fi адаптера (0.7)&lt;/p&gt;"
+                style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="510" y="2625" width="290" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="82"
+                value="&lt;p style=&quot;font-size: 22px&quot;&gt;Выйти из зоны работы возможного источника помех (0.8)&lt;/p&gt;"
+                style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="900" y="2810" width="290" height="150" as="geometry"/>
+        </mxCell>
+    </root>
+</mxGraphModel>

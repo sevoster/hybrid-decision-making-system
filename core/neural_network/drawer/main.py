@@ -17,7 +17,7 @@ def create_arrow(empty_link, neuron, link, ids):
     line = copy.deepcopy(empty_link)
     line.attrib['source'] = neuron.id
     line.attrib['target'] = link.target.id
-    line.attrib['value'] = link.weight
+    line.attrib['value'] = str(link.weight)
     line_id = get_random_id(None, ids)
     line.attrib['id'] = line_id
     return line
