@@ -22,6 +22,7 @@ class ExplanationMechanism:
     # TODO: concatenate by intermediate consequent
     def get_explanation(self, rule_sequence):
         logic_strings = list()
+        consequent_ids = list()
         for rule_id in rule_sequence:
             logic_string = ""
             rule = self.knowledge_base.get_rule_by_id(rule_id)
@@ -32,11 +33,17 @@ class ExplanationMechanism:
                 if fact_type == FactType.Antecedent:
                     text = "Q: {}; A: {} ({})".format(text, value, self.__convert_to_human_answer(value))
                 else:
-                    text = "C: {}".format(text)
-                logic_string += text + " -> "
+                    # text = "C: {}".format(text)
+                    continue
+                logic_string += text + " ->\n"
                 pass
             conclusion_text = self.knowledge_base.get_text_description(rule.successor.id)
             logic_string += conclusion_text
-            logic_strings.append(logic_string)
+            if rule.predecessors[0].id in consequent_ids:
+                index = consequent_ids.index(rule.predecessors[0].id)
+                logic_strings[index] += " ->\n" + logic_string
+            else:
+                logic_strings.append(logic_string)
+                consequent_ids.append(rule.successor.id)
             pass
         return logic_strings
