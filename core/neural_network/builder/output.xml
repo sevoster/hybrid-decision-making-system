@@ -2,5 +2,579 @@
     <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="34" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Драйвер адаптера последней версии?|0" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="40" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="19649" parent="1" source="34" style="endArrow=block;endSize=16;endFill=0;html=1;" target="63" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="35689" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Драйвер адаптера последней версии?|1" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="480" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="57119" parent="1" source="35689" style="endArrow=block;endSize=16;endFill=0;html=1;" target="69" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="149838" parent="1" source="35689" style="endArrow=block;endSize=16;endFill=0;html=1;" target="68" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="6385" parent="1" source="35689" style="endArrow=block;endSize=16;endFill=0;html=1;" target="65" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="110219" parent="1" source="35689" style="endArrow=block;endSize=16;endFill=0;html=1;" target="81" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="200214" parent="1" source="35689" style="endArrow=block;endSize=16;endFill=0;html=1;" target="82" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="36" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Адаптер активен во вкладке &quot;Параметры подключения&quot;?|1" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="920" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="197506" parent="1" source="36" style="endArrow=block;endSize=16;endFill=0;html=1;" target="63" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="160347" parent="1" source="36" style="endArrow=block;endSize=16;endFill=0;html=1;" target="69" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="245013" parent="1" source="36" style="endArrow=block;endSize=16;endFill=0;html=1;" target="68" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="185837" parent="1" source="36" style="endArrow=block;endSize=16;endFill=0;html=1;" target="65" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="174090" parent="1" source="36" style="endArrow=block;endSize=16;endFill=0;html=1;" target="81" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="128893" parent="1" source="36" style="endArrow=block;endSize=16;endFill=0;html=1;" target="82" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="88275" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Адаптер активен во вкладке &quot;Параметры подключения&quot;?|0" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="1360" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="142812" parent="1" source="88275" style="endArrow=block;endSize=16;endFill=0;html=1;" target="49" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="39" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Используется адаптер Wi-Fi?|0" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="1800" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="254291" parent="1" source="39" style="endArrow=block;endSize=16;endFill=0;html=1;" target="69" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="198330" parent="1" source="39" style="endArrow=block;endSize=16;endFill=0;html=1;" target="68" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="216438" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Используется адаптер Wi-Fi?|1" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="2240" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="75679" parent="1" source="216438" style="endArrow=block;endSize=16;endFill=0;html=1;" target="65" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="189588" parent="1" source="216438" style="endArrow=block;endSize=16;endFill=0;html=1;" target="81" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="21407" parent="1" source="216438" style="endArrow=block;endSize=16;endFill=0;html=1;" target="82" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="41" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Используется адаптер LAN?|1" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="2680" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="32186" parent="1" source="41" style="endArrow=block;endSize=16;endFill=0;html=1;" target="69" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="5131" parent="1" source="41" style="endArrow=block;endSize=16;endFill=0;html=1;" target="68" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="44" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Режим &quot;в самолете&quot; активен?|0" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="3120" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="63813" parent="1" source="44" style="endArrow=block;endSize=16;endFill=0;html=1;" target="63" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="180648" parent="1" source="44" style="endArrow=block;endSize=16;endFill=0;html=1;" target="69" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="173434" parent="1" source="44" style="endArrow=block;endSize=16;endFill=0;html=1;" target="68" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="177036" parent="1" source="44" style="endArrow=block;endSize=16;endFill=0;html=1;" target="65" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="198151" parent="1" source="44" style="endArrow=block;endSize=16;endFill=0;html=1;" target="81" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="112386" parent="1" source="44" style="endArrow=block;endSize=16;endFill=0;html=1;" target="82" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="232730" parent="1" source="44" style="endArrow=block;endSize=16;endFill=0;html=1;" target="49" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="121847" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Режим &quot;в самолете&quot; активен?|1" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="3560" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="220395" parent="1" source="121847" style="endArrow=block;endSize=16;endFill=0;html=1;" target="64" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="47" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Точка доступа находится на расстоянии более 100 метров?|1" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="4000" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="266477" parent="1" source="47" style="endArrow=block;endSize=16;endFill=0;html=1;" target="65" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="253797" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Точка доступа находится на расстоянии более 100 метров?|0" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="4440" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="266342" parent="1" source="253797" style="endArrow=block;endSize=16;endFill=0;html=1;" target="81" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="13858" parent="1" source="253797" style="endArrow=block;endSize=16;endFill=0;html=1;" target="82" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="55" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Светодиод сетевого адаптера мигает?|1" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="4880" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="172979" parent="1" source="55" style="endArrow=block;endSize=16;endFill=0;html=1;" target="69" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="125883" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Светодиод сетевого адаптера мигает?|0" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="5320" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="139747" parent="1" source="125883" style="endArrow=block;endSize=16;endFill=0;html=1;" target="68" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="58" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Используется DHCP?|0" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="5760" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="185203" parent="1" source="58" style="endArrow=block;endSize=16;endFill=0;html=1;" target="71" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="172728" parent="1" source="58" style="endArrow=block;endSize=16;endFill=0;html=1;" target="72" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="292520" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Используется DHCP?|1" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="6200" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="171724" parent="1" source="292520" style="endArrow=block;endSize=16;endFill=0;html=1;" target="76" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="279958" parent="1" source="292520" style="endArrow=block;endSize=16;endFill=0;html=1;" target="77" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="61" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Настройка IP-адреса выполнена корректно?|0" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="6640" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="3406" parent="1" source="61" style="endArrow=block;endSize=16;endFill=0;html=1;" target="71" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="264245" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Настройка IP-адреса выполнена корректно?|0.5" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="7080" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="229821" parent="1" source="264245" style="endArrow=block;endSize=16;endFill=0;html=1;" target="72" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="70" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Есть питание на сетевой плате?|1" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="7520" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="91384" parent="1" source="70" style="endArrow=block;endSize=16;endFill=0;html=1;" target="62" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="273400" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Есть питание на сетевой плате?|0" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="7960" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="71501" parent="1" source="273400" style="endArrow=block;endSize=16;endFill=0;html=1;" target="66" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="75" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="DHCP-сервер работает корректно?|0" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="8400" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="290626" parent="1" source="75" style="endArrow=block;endSize=16;endFill=0;html=1;" target="76" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="296484" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="DHCP-сервер работает корректно?|1" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="8840" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="270026" parent="1" source="296484" style="endArrow=block;endSize=16;endFill=0;html=1;" target="77" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="80" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Есть источник помех Wi-Fi сигнала?|0.5" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="9280" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="229461" parent="1" source="80" style="endArrow=block;endSize=16;endFill=0;html=1;" target="81" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="23636" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Есть источник помех Wi-Fi сигнала?|1" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="9720" y="40" />
+        </mxCell>
+        
+        <mxCell edge="1" id="192780" parent="1" source="23636" style="endArrow=block;endSize=16;endFill=0;html=1;" target="82" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="63" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Обновить драйвер адаптера (1)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="40" y="440" />
+        </mxCell>
+        
+        <mxCell edge="1" id="206592" parent="1" source="63" style="endArrow=block;endSize=16;endFill=0;html=1;" target="63m" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="69" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Проблема в программной настройке (0.7)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="400" y="440" />
+        </mxCell>
+        
+        <mxCell edge="1" id="65620" parent="1" source="69" style="endArrow=block;endSize=16;endFill=0;html=1;" target="71" value="0.7">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="118764" parent="1" source="69" style="endArrow=block;endSize=16;endFill=0;html=1;" target="72" value="0.7">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="224384" parent="1" source="69" style="endArrow=block;endSize=16;endFill=0;html=1;" target="76" value="0.7">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="133895" parent="1" source="69" style="endArrow=block;endSize=16;endFill=0;html=1;" target="77" value="0.7">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="68" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Проверить аппаратную часть (1)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="760" y="440" />
+        </mxCell>
+        
+        <mxCell edge="1" id="78051" parent="1" source="68" style="endArrow=block;endSize=16;endFill=0;html=1;" target="62" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell edge="1" id="139426" parent="1" source="68" style="endArrow=block;endSize=16;endFill=0;html=1;" target="66" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="65" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Приблизиться к точке доступа (0.9)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="1120" y="440" />
+        </mxCell>
+        
+        <mxCell edge="1" id="213408" parent="1" source="65" style="endArrow=block;endSize=16;endFill=0;html=1;" target="65m" value="0.9">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="81" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Сменить частоту Wi-Fi адаптера (0.7)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="1480" y="440" />
+        </mxCell>
+        
+        <mxCell edge="1" id="164137" parent="1" source="81" style="endArrow=block;endSize=16;endFill=0;html=1;" target="81m" value="0.7">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="82" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Выйти из зоны работы возможного источника помех (0.8)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="1840" y="440" />
+        </mxCell>
+        
+        <mxCell edge="1" id="149830" parent="1" source="82" style="endArrow=block;endSize=16;endFill=0;html=1;" target="82m" value="0.8">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="49" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Включить адаптер во вкладке &quot;Параметры подключения&quot; (1)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="2200" y="440" />
+        </mxCell>
+        
+        <mxCell edge="1" id="246620" parent="1" source="49" style="endArrow=block;endSize=16;endFill=0;html=1;" target="49m" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="64" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Выключить режим &quot;в самолете&quot; (1)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="2560" y="440" />
+        </mxCell>
+        
+        <mxCell edge="1" id="185835" parent="1" source="64" style="endArrow=block;endSize=16;endFill=0;html=1;" target="64m" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="71" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Установить корректные значения адресов узла, шлюза, DNS-сервера (1)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="40" y="840" />
+        </mxCell>
+        
+        <mxCell edge="1" id="243653" parent="1" source="71" style="endArrow=block;endSize=16;endFill=0;html=1;" target="71m" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="72" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Проверить адрес сети, узла, шлюза и DNS-сервера, выполнить настройку(1)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="400" y="840" />
+        </mxCell>
+        
+        <mxCell edge="1" id="218875" parent="1" source="72" style="endArrow=block;endSize=16;endFill=0;html=1;" target="72m" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="76" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Настроить DHCP-сервер(1)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="760" y="840" />
+        </mxCell>
+        
+        <mxCell edge="1" id="169795" parent="1" source="76" style="endArrow=block;endSize=16;endFill=0;html=1;" target="76m" value="1">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="77" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Обратиться к провайдеру для устранения неполадок подключения с его стороны (0.9)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="1120" y="840" />
+        </mxCell>
+        
+        <mxCell edge="1" id="228042" parent="1" source="77" style="endArrow=block;endSize=16;endFill=0;html=1;" target="77m" value="0.9">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="62" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Необходим ремонт\ замена адаптера LAN(0.4)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="1480" y="840" />
+        </mxCell>
+        
+        <mxCell edge="1" id="238804" parent="1" source="62" style="endArrow=block;endSize=16;endFill=0;html=1;" target="62m" value="0.4">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="66" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Необходим ремонт\замена материнской карты (0.7)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="1840" y="840" />
+        </mxCell>
+        
+        <mxCell edge="1" id="125107" parent="1" source="66" style="endArrow=block;endSize=16;endFill=0;html=1;" target="66m" value="0.7">
+            <mxGeometry as="geometry" relative="1" width="160">
+                <mxPoint as="sourcePoint" x="40" y="300" />
+                <mxPoint as="targetPoint" x="200" y="300" />
+            </mxGeometry>
+        </mxCell>
+    <mxCell id="63m" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Обновить драйвер адаптера (1)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="0" y="1680" />
+        </mxCell>
+        
+        <mxCell id="71m" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Установить корректные значения адресов узла, шлюза, DNS-сервера (1)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="410" y="1680" />
+        </mxCell>
+        
+        <mxCell id="72m" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Проверить адрес сети, узла, шлюза и DNS-сервера, выполнить настройку(1)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="840" y="1680" />
+        </mxCell>
+        
+        <mxCell id="76m" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Настроить DHCP-сервер(1)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="1290" y="1680" />
+        </mxCell>
+        
+        <mxCell id="77m" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Обратиться к провайдеру для устранения неполадок подключения с его стороны (0.9)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="1760" y="1680" />
+        </mxCell>
+        
+        <mxCell id="62m" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Необходим ремонт\ замена адаптера LAN(0.4)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="2250" y="1680" />
+        </mxCell>
+        
+        <mxCell id="66m" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Необходим ремонт\замена материнской карты (0.7)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="2760" y="1680" />
+        </mxCell>
+        
+        <mxCell id="65m" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Приблизиться к точке доступа (0.9)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="3290" y="1680" />
+        </mxCell>
+        
+        <mxCell id="81m" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Сменить частоту Wi-Fi адаптера (0.7)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="3840" y="1680" />
+        </mxCell>
+        
+        <mxCell id="82m" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Выйти из зоны работы возможного источника помех (0.8)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="4410" y="1680" />
+        </mxCell>
+        
+        <mxCell id="49m" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Включить адаптер во вкладке &quot;Параметры подключения&quot; (1)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="5000" y="1680" />
+        </mxCell>
+        
+        <mxCell id="64m" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;p style=&quot;font-size: 22px&quot;&gt;Выключить режим &quot;в самолете&quot; (1)&lt;/p&gt;" vertex="1">
+            <mxGeometry as="geometry" height="80" width="80" x="5610" y="1680" />
+        </mxCell>
+        
         </root>
 </mxGraphModel>

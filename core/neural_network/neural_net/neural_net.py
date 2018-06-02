@@ -17,17 +17,17 @@ class NeuralNet(INeuralNet):
         self.answer = list()
 
         # 1. устанавливаем входные значения для нейронов
-        for i in range(len(input)):
-            level = self.levels[0]
-            neuron = level.get_neuron(i)
+        for i, neuron in enumerate(self.sensor_level):
             neuron.increase_incoming_value(input[i])
+
+        self.sensor_level.process()
 
         # 2. для каждого уровня вычисляем output нейронов и передаем его дальше
         for level in self.levels:
             level.process()
 
         # 3. результат в последнем слое
-        for neuron in self.levels[len(self.levels) - 1]:
+        for neuron in self.motor_layer:
             self.answer.append(neuron.calculate_output())
 
         return self.answer

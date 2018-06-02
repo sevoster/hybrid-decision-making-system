@@ -54,7 +54,13 @@ class Parser(QWidget):
         }
         root = tree.getroot()
         for cell in root.iter('mxCell'):
-            if 'style' in cell.attrib:
+            if 'source' in cell.attrib:
+                json["links"].append({
+                    "weight": cell.attrib['value'],
+                    "source": cell.attrib['source'],
+                    "target": cell.attrib['target']
+                })
+            elif 'style' in cell.attrib:
                 if str(cell.attrib['style']).find('ellipse') != -1:
                     json["nodes"].append({
                         "text": cell.attrib['value'],
@@ -62,19 +68,14 @@ class Parser(QWidget):
                         "id": cell.attrib['id']
                     })
                 elif str(cell.attrib['style']).find('rounded=0') != -1:
-                    coef = cell.attrib['value'][0:len(cell.attrib['value']) - 1].partition('(')[2]
+                    coef = cell.attrib['value'][cell.attrib['value'].rindex('(')+1:cell.attrib['value'].rindex(')')]
                     json["nodes"].append({
                         "text": cell.attrib['value'],
                         "type": FactType.Consequent,
                         "id": cell.attrib['id'],
                         "coefficient": coef
                     })
-                elif 'source' in cell.attrib:
-                    json["links"].append({
-                        "weight": cell.attrib['value'],
-                        "source": cell.attrib['source'],
-                        "target": cell.attrib['target']
-                    })
+
         return json
 
 

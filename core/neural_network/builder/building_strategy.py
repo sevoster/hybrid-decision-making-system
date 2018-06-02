@@ -41,8 +41,10 @@ class CoefsToWeightsBuilding(IBuildingStrategy):
             if node['type'] == 'a':
                 for arc in self.arcs:
                     if arc['source'] == id:
+
+
                         self.neural_net.sensor_level.add_neuron(
-                            Neuron(id=id, func=lambda s: 1 - fabs(s - arc['weight']),
+                            Neuron(id=id, func=lambda s, w = float(arc['weight']): 1 - fabs(float(s) - w), rule=id,
                                    sensor_weigth=arc['weight'], text=node['text'] + '|' + arc['weight']))
 
         for neuron in self.neural_net.sensor_level.neurons:
