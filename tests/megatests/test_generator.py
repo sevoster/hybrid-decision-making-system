@@ -35,16 +35,20 @@ def generate_analytic_output():
 
     decision_system = DecisionSystem()
     decision_system.apply_decision_graph(graph_data)
+    input_dict = {}
+    decision_system.connect_to_user_interface(lambda id, text, callback: callback(str(id), input_dict[str(id)]),
+                                              lambda id, text, value: output.append((str(id), value)))
 
     for input_data in inputs:
         input_dict = {e[0]: e[1] for e in input_data}
         output = list()
-        decision_system.connect_to_user_interface(lambda id, text, callback: callback(str(id), input_dict[str(id)]),
-                                                  lambda id, text, value: output.append((str(id), value)))
         decision_system.start_output()
         outputs.append(output)
         pass
-    print(outputs)
+    # print(outputs)
+    with open('analytic_output.json', 'w') as result_file:
+        json.dump(outputs, result_file)
+    pass
 
 
 def generate_neural_outputs():
