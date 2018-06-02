@@ -6,20 +6,20 @@
         {
             "text": "Все нормально?",
             "type": "a",
-            "id": 2
+            "id": "2"
         },
         {
             "text": "Выбрать всё (0.5)",
             "type": "c",
-            "id": 3,
-            "coefficient": 0.5
+            "id": "3",
+            "coefficient": "0.5"
         }
     ],
     "links": [
         {
-            "weight": 0.5,
-            "source": 2,
-            "target": 3
+            "weight": "0.5",
+            "source": "2",
+            "target": "3"
         }
     ]
 }

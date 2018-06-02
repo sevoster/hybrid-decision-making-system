@@ -59,21 +59,21 @@ class Parser(QWidget):
                     json["nodes"].append({
                         "text": cell.attrib['value'],
                         "type": FactType.Antecedent,
-                        "id": int(cell.attrib['id'])
+                        "id": cell.attrib['id']
                     })
                 elif str(cell.attrib['style']).find('rounded=0') != -1:
                     coef = cell.attrib['value'][0:len(cell.attrib['value']) - 1].partition('(')[2]
                     json["nodes"].append({
                         "text": cell.attrib['value'],
                         "type": FactType.Consequent,
-                        "id": int(cell.attrib['id']),
-                        "coefficient": float(coef)
+                        "id": cell.attrib['id'],
+                        "coefficient": coef
                     })
-                elif str(cell.attrib['style']).find('endArrow') != -1:
+                elif 'source' in cell.attrib:
                     json["links"].append({
-                        "weight": float(cell.attrib['value']),
-                        "source": int(cell.attrib['source']),
-                        "target": int(cell.attrib['target'])
+                        "weight": cell.attrib['value'],
+                        "source": cell.attrib['source'],
+                        "target": cell.attrib['target']
                     })
         return json
 

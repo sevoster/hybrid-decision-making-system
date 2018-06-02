@@ -1,6 +1,7 @@
 from core.neural_network.neural_net.neural_net import NeuralNet
 from core.neural_network.neural_net.neural_level import NeuralLevel
 from core.neural_network.neural_net.neuron import Neuron
+from math import fabs
 from core.neural_network.neural_net.link import Link
 
 
@@ -37,22 +38,23 @@ class CoefsToWeightsBuilding(IBuildingStrategy):
 
         for id in self.nodes:
             node = self.nodes[id]
-            if node['type'] == 'ellipse':
+            if node['type'] == 'a':
                 for arc in self.arcs:
                     if arc['source'] == id:
                         self.neural_net.sensor_level.add_neuron(
-                            Neuron(id=id, sensor_weigth=arc['weight'], text=node['text'] + '|' + arc['weight']))
+                            Neuron(id=id, func=lambda s: 1 - fabs(s - arc['weight']),
+                                   sensor_weigth=arc['weight'], text=node['text'] + '|' + arc['weight']))
 
         for neuron in self.neural_net.sensor_level.neurons:
             for arc in self.arcs:
                 if arc['source'] == neuron.id and arc['weight'] == neuron.sensor_weight:
                     self.traverse(sender=neuron, node=self.nodes[arc['target']],
-                                  index=0, weight=arc['weight'])
+                                  index=0, weight=1)
         return self.neural_net
 
     def traverse(self, node, sender, index, weight):
         # self.neural_net.print_net()
-        if node['type'] == 'rectangle':
+        if node['type'] == 'c':
             if len(self.neural_net.levels) < index + 1:
                 self.neural_net.levels.append(NeuralLevel())
 
@@ -62,7 +64,8 @@ class CoefsToWeightsBuilding(IBuildingStrategy):
                 if neuron:
                     sender.add_link(weight=weight, target=neuron)
                 else:
-                    m_neuron = self.neural_net.motor_layer.add_neuron(Neuron(id=node['id'] + 'm', text=node['text'], func=lambda x: x))
+                    m_neuron = self.neural_net.motor_layer.add_neuron(
+                        Neuron(id=node['id'] + 'm', text=node['text'], func=lambda x: x))
                     h_neuron = self.neural_net.levels[index].add_neuron(Neuron(id=node['id'], text=node['text']))
                     sender.add_link(weight=weight, target=h_neuron)
                     h_neuron.add_link(weight=node['coefficient'], target=m_neuron)
