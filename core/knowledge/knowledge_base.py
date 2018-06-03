@@ -1,3 +1,4 @@
+import re
 from networkx.readwrite import json_graph
 from networkx import algorithms
 from pymongo import MongoClient
@@ -135,6 +136,7 @@ class MongoKnowledgeBase:
         if attributes['type'] == FactType.Consequent:
             if graph.out_degree(node) != 0:
                 fact['type'] = FactType.IntermediateConsequent
+            fact["text"] = re.sub('\(\d(\.\d*)?\)', '', attributes['text'])
             fact['coefficient'] = float(attributes['coefficient'])
         return fact
 

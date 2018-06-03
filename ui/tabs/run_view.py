@@ -99,8 +99,8 @@ class RunView(QWidget):
         self.__question_list.addWidget(new_form, alignment=Qt.AlignTop)
         pass
 
-    def show_result(self, fact_id, text):
-        result_form = ResultView(fact_id, text)
+    def show_result(self, fact_id, text, value=None):
+        result_form = ResultView(fact_id, text, value)
         result_form.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Maximum)
         result_form.finished.connect(self.remove_result)
         self.__result_list.addWidget(result_form, alignment=Qt.AlignTop)
