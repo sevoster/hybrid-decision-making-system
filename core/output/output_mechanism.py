@@ -11,8 +11,8 @@ class BFSOutputMechanism(QObject):
     MAX_COEFFICIENT_DIFF = 0.6
     DIFF_ERROR = 0.2
 
-    new_question = pyqtSignal(int, str, 'PyQt_PyObject')
-    result_found = pyqtSignal(int, str, float)
+    new_question = pyqtSignal('PyQt_PyObject', str, 'PyQt_PyObject')
+    result_found = pyqtSignal('PyQt_PyObject', str, float)
 
     def __init__(self, working_memory, knowledge):
         super().__init__()
@@ -30,7 +30,7 @@ class BFSOutputMechanism(QObject):
             return
         self.pushed.append(fact_id)
         text = self.knowledge.get_text_description(fact_id)
-        self.new_question.emit(int(fact_id), text, self.process_answer)
+        self.new_question.emit(fact_id, text, self.process_answer)
         pass
 
     def __push_result(self, fact_id, value):
@@ -38,7 +38,7 @@ class BFSOutputMechanism(QObject):
             return
         self.pushed.append(fact_id)
         print("RESULT:", self.knowledge.get_text_description(fact_id))
-        self.result_found.emit(int(fact_id), self.knowledge.get_text_description(fact_id), value)
+        self.result_found.emit(fact_id, self.knowledge.get_text_description(fact_id), value)
         pass
 
     def __clean(self):
@@ -55,13 +55,14 @@ class BFSOutputMechanism(QObject):
         pass
 
     def __request_missing_values(self, predecessors):
-        have_missing = False
         for predecessor in predecessors:
             if not self.working_memory.is_inited(predecessor.id):
-                have_missing = True
                 self.__push_new_question(predecessor.id)
+                return True
+            elif not self.__is_condition_satisfied(predecessor.id, predecessor.coefficient):
+                return True
             pass
-        return have_missing
+        return False
 
     def __count_fact_coefficient(self, fact_id, expert_value):
         user_value = self.working_memory.get_value_by_id(fact_id)
@@ -112,13 +113,16 @@ class BFSOutputMechanism(QObject):
 
     def __is_satisfied(self, predecessors):
         for predecessor in predecessors:
-            fact_id = predecessor.id
-            if self.knowledge.get_type(fact_id) == FactType.IntermediateConsequent:
-                continue
-            coefficient = predecessor.coefficient
-            diff = abs(coefficient - self.working_memory.get_value_by_id(fact_id))
-            if diff > self.user_to_expert_min_diff[fact_id] + self.DIFF_ERROR or diff > self.MAX_COEFFICIENT_DIFF:
+            if not self.__is_condition_satisfied(predecessor.id, predecessor.coefficient):
                 return False
+        return True
+
+    def __is_condition_satisfied(self, fact_id, expert_coef):
+        if self.__is_intermediate_consequent(fact_id):
+            return True
+        diff = abs(expert_coef - self.working_memory.get_value_by_id(fact_id))
+        if diff > self.user_to_expert_min_diff[fact_id] + self.DIFF_ERROR or diff > self.MAX_COEFFICIENT_DIFF:
+            return False
         return True
 
     def __is_intermediate_consequent(self, consequent_id):
