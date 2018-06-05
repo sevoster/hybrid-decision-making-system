@@ -16,14 +16,14 @@ class Builder(IBuilder):
     def build_net(self, building_data):
         return self.building_strategy.build_net(building_data)
 
-    def parse_json(self, path):
-        with open('SimpleTest.json', 'r', encoding='utf-8') as file:
+    def parse_json(self, path='SimpleTest.json' ):
+        with open(path, 'r', encoding='utf-8') as file:
             read_data = file.read()
             self.building_data = json.loads(read_data)
         return self.building_data
 
 
-# builder = Builder()
-# net = builder.build_net(builder.parse_json(''))
-# net.print_net()
-# draw_net(net)
+builder = Builder()
+net = builder.build_net(builder.parse_json())
+net.print_net()
+draw_net(net)

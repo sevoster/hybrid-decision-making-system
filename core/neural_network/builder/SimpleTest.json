@@ -4,275 +4,54 @@
     "graph": {},
     "nodes": [
         {
-            "text": "Драйвер адаптера последней версии?",
-            "type": "a",
-            "id": "34"
-        },
-        {
-            "text": "Адаптер активен во вкладке \"Параметры подключения\"?",
-            "type": "a",
-            "id": "36"
-        },
-        {
-            "text": "Используется адаптер Wi-Fi?",
-            "type": "a",
-            "id": "39"
-        },
-        {
-            "text": "Используется адаптер LAN?",
-            "type": "a",
-            "id": "41"
-        },
-        {
-            "text": "Режим \"в самолете\" активен?",
-            "type": "a",
-            "id": "44"
-        },
-        {
             "text": "Точка доступа находится на расстоянии более 100 метров?",
             "type": "a",
-            "id": "47"
-        },
-        {
-            "text": "<p style=\"font-size: 22px\">Включить адаптер во вкладке \"Параметры подключения\" (1)</p>",
-            "type": "c",
-            "id": "49",
-            "coefficient": "1"
-        },
-        {
-            "text": "Светодиод сетевого адаптера мигает?",
-            "type": "a",
-            "id": "55"
-        },
-        {
-            "text": "Используется DHCP?",
-            "type": "a",
-            "id": "58"
-        },
-        {
-            "text": "Настройка IP-адреса выполнена корректно?",
-            "type": "a",
-            "id": "61"
-        },
-        {
-            "text": "<p style=\"font-size: 22px\">Необходим ремонт\\ замена адаптера LAN(0.4)</p>",
-            "type": "c",
-            "id": "62",
-            "coefficient": "0.4"
-        },
-        {
-            "text": "<p style=\"font-size: 22px\">Обновить драйвер адаптера (1)</p>",
-            "type": "c",
-            "id": "63",
-            "coefficient": "1"
-        },
-        {
-            "text": "<p style=\"font-size: 22px\">Выключить режим \"в самолете\" (1)</p>",
-            "type": "c",
-            "id": "64",
-            "coefficient": "1"
+            "id": "4"
         },
         {
             "text": "<p style=\"font-size: 22px\">Приблизиться к точке доступа (0.9)</p>",
             "type": "c",
-            "id": "65",
-            "coefficient": "0.9"
-        },
-        {
-            "text": "<p style=\"font-size: 22px\">Необходим ремонт\\замена материнской карты (0.7)</p>",
-            "type": "c",
-            "id": "66",
-            "coefficient": "0.7"
-        },
-        {
-            "text": "<p style=\"font-size: 22px\">Проверить аппаратную часть (1)</p>",
-            "type": "c",
-            "id": "68",
-            "coefficient": "1"
-        },
-        {
-            "text": "<p style=\"font-size: 22px\">Проблема в программной настройке (0.7)</p>",
-            "type": "c",
-            "id": "69",
-            "coefficient": "0.7"
-        },
-        {
-            "text": "Есть питание на сетевой плате?",
-            "type": "a",
-            "id": "70"
-        },
-        {
-            "text": "<p style=\"font-size: 22px\">Установить корректные значения адресов узла, шлюза, DNS-сервера (1)</p>",
-            "type": "c",
-            "id": "71",
-            "coefficient": "1"
-        },
-        {
-            "text": "<p style=\"font-size: 22px\">Проверить адрес сети, узла, шлюза и DNS-сервера, выполнить настройку(1)</p>",
-            "type": "c",
-            "id": "72",
-            "coefficient": "1"
-        },
-        {
-            "text": "DHCP-сервер работает корректно?",
-            "type": "a",
-            "id": "75"
-        },
-        {
-            "text": "<p style=\"font-size: 22px\">Настроить DHCP-сервер(1)</p>",
-            "type": "c",
-            "id": "76",
-            "coefficient": "1"
-        },
-        {
-            "text": "<p style=\"font-size: 22px\">Обратиться к провайдеру для устранения неполадок подключения с его стороны (0.9)</p>",
-            "type": "c",
-            "id": "77",
+            "id": "5",
             "coefficient": "0.9"
         },
         {
             "text": "Есть источник помех Wi-Fi сигнала?",
             "type": "a",
-            "id": "80"
+            "id": "8"
         },
         {
             "text": "<p style=\"font-size: 22px\">Сменить частоту Wi-Fi адаптера (0.7)</p>",
             "type": "c",
-            "id": "81",
+            "id": "9",
             "coefficient": "0.7"
         },
         {
             "text": "<p style=\"font-size: 22px\">Выйти из зоны работы возможного источника помех (0.8)</p>",
             "type": "c",
-            "id": "82",
+            "id": "10",
             "coefficient": "0.8"
         }
     ],
     "links": [
         {
-            "weight": "0",
-            "source": "34",
-            "target": "63"
-        },
-        {
             "weight": "1",
-            "source": "34",
-            "target": "39"
-        },
-        {
-            "weight": "1",
-            "source": "36",
-            "target": "34"
+            "source": "4",
+            "target": "5"
         },
         {
             "weight": "0",
-            "source": "39",
-            "target": "41"
-        },
-        {
-            "weight": "1",
-            "source": "39",
-            "target": "47"
-        },
-        {
-            "weight": "1",
-            "source": "41",
-            "target": "55"
-        },
-        {
-            "weight": "0",
-            "source": "44",
-            "target": "36"
-        },
-        {
-            "weight": "1",
-            "source": "44",
-            "target": "64"
-        },
-        {
-            "weight": "1",
-            "source": "47",
-            "target": "65"
-        },
-        {
-            "weight": "0",
-            "source": "47",
-            "target": "80"
-        },
-        {
-            "weight": "0",
-            "source": "36",
-            "target": "49"
-        },
-        {
-            "weight": "1",
-            "source": "70",
-            "target": "62"
-        },
-        {
-            "weight": "1",
-            "source": "69",
-            "target": "58"
-        },
-        {
-            "weight": "0",
-            "source": "70",
-            "target": "66"
-        },
-        {
-            "weight": "1",
-            "source": "55",
-            "target": "69"
-        },
-        {
-            "weight": "0",
-            "source": "55",
-            "target": "68"
-        },
-        {
-            "weight": "0",
-            "source": "58",
-            "target": "61"
-        },
-        {
-            "weight": "1",
-            "source": "58",
-            "target": "75"
-        },
-        {
-            "weight": "0",
-            "source": "61",
-            "target": "71"
+            "source": "4",
+            "target": "8"
         },
         {
             "weight": "0.5",
-            "source": "61",
-            "target": "72"
+            "source": "8",
+            "target": "9"
         },
         {
             "weight": "1",
-            "source": "68",
-            "target": "70"
-        },
-        {
-            "weight": "0",
-            "source": "75",
-            "target": "76"
-        },
-        {
-            "weight": "1",
-            "source": "75",
-            "target": "77"
-        },
-        {
-            "weight": "0.5",
-            "source": "80",
-            "target": "81"
-        },
-        {
-            "weight": "1",
-            "source": "80",
-            "target": "82"
+            "source": "8",
+            "target": "10"
         }
     ]
 }

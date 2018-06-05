@@ -16,6 +16,19 @@ class NeuralNet(INeuralNet):
     def get_answer(self, input):
         self.answer = list()
 
+        for neuron in self.sensor_level:
+            neuron.income = 0
+            neuron.output = 0
+
+        for neuron in self.motor_layer:
+            neuron.income = 0
+            neuron.output = 0
+
+        for layer in self.levels:
+            for neuron in layer:
+                neuron.income = 0
+                neuron.output = 0
+
         # 1. устанавливаем входные значения для нейронов
         for i, neuron in enumerate(self.sensor_level):
             neuron.increase_incoming_value(input[i])
